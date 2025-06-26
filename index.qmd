@@ -1,11 +1,13 @@
 ---
 title: "Data Eng Team 16 Project Proposal"
+author: "Team 16"
+format: html
+editor: visual
 ---
 
-This is a Quarto website.
+### 1. Choosen Data Visualisation
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+We selected the visualization from the Straits Times article:\
+[**“Older buyers, smaller households among factors driving demand for smaller flats”**](https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats)
 
-```{r}
-1 + 1
-```
+The Chart shows the percentage changes in the number of HDB flat transactions due to demographic changes, such as an ageing population, shrinking household sizes and more singles opting to live independently, have further boosted demand for smaller flats.
