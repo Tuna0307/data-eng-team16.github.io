@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "temp_website"
+  title: "Data Eng Team 16 Project Proposal"
   navbar:
     left:
       - href: index.qmd
