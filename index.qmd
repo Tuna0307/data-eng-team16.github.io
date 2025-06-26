@@ -10,25 +10,55 @@ editor: visual
 We selected the visualization from the Straits Times article:\
 [**“Older buyers, smaller households among factors driving demand for smaller flats”**](https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats)
 
-The Chart shows the percentage changes in the number of HDB flat transactions due to demographic changes, such as an ageing population, shrinking household sizes and more singles opting to live independently, have further boosted demand for smaller flats.
+The selected article presents a visualization showing the upward trend in applications for smaller flats. This pattern is attributed to several demographic shifts:
+
+-   An increasing elderly population (aged 65+)
+-   A decline in average household size
+-   More single-person or two-person households
+-   Greater interest in right-sizing among older buyers
+
+This visualization is significant as it captures how housing preferences evolve with social and demographic change. It also serves as a basis for policy review and urban planning in a rapidly aging society.
 
 ### 2. Critical Analysis
 
 #### Strengths
 
+• Clarity and Simplicity: The bar chart is easy to read and understand, even for an audience without a background in data analysis. 
+• Effective Comparison: It provides a clear and immediate visual comparison of the percentage change in transaction volume across different flat types. 
+• Clear Title: The chart is well-titled, which helps in understanding the context of the data being presented.
+
 #### Weaknesses
 
+• Lack of Absolute Numbers: The visualization only presents the percentage change, which can be misleading without the absolute transaction volumes. For instance, a 90.7% increase on a small base number might be less significant than a 13.7% increase on a large base number 
+• Aggregated Data: The data is aggregated over a four-year period (2020-2024), which masks any year-on-year fluctuations or trends. 
+• Static Nature: The chart is a static image, offering no interactivity for the user to explore the data further.
 
 ### 3. Planned Improvements
 
+To address the weaknesses of the original visualization and to provide a more comprehensive and insightful analysis, we propose to develop an interactive dashboard with the following improvements: 
+• Interactive Time Series Analysis: We will create a line chart showing the monthly or quarterly transaction volumes for each flat type from 2017 to the present. This will allow for a more granular analysis of the trends over time. 
+• Geospatial Mapping: We will develop a map-based visualization to illustrate the geographical distribution of resale flat prices and transaction volumes across different towns in Singapore. This will help in identifying spatial patterns and hotspots. 
+• Dynamic Filtering and Drill-Down: The dashboard will include interactive filters for users to slice and dice the data by town, flat type, and time period. This will enable users to conduct their own exploratory analysis. • Price and Transaction Volume Correlation: We will include scatter plots or bubble charts to explore the relationship between resale price, floor area, and transaction volume.
 
 ### 4. Details of Data Source
 
+The primary dataset used is the HDB Resale Flat Prices from [data.gov.sg](https://data.gov.sg/collections/189/view): - Covers data from 1990 to June 2025. - Includes flat type, floor area, resale price, town, and month.
 
 ### 5. Steps for data Cleaning and Transformation
 
+The following steps will be taken to clean and transform the data for analysis: 
+1. Data Loading: The dataset will be loaded into a Python environment using the Pandas library. 
+2. Handling Missing Values: We will check for any missing values in the dataset and decide on an appropriate strategy to handle them, such as imputation or removal. 
+3. Data Type Conversion: The month column will be converted to a datetime object to facilitate time series analysis. The resale_price and floor_area_sqm columns will be ensured to be in numeric format. 
+4. Feature Engineering: We will extract the 'year' from the 'month' column to create a new 'year' feature for annual analysis. We will also process the storey_range column by splitting it into lower_storey and upper_storey and calculating an average storey for numerical analysis. 
+5. Data Structuring: The data will be structured and aggregated as needed for the different visualizations in our dashboard.
 
 ### 6. Data Analysis Plan
 
+Our data analysis will be focused on uncovering the trends and patterns in the HDB resale market, with a particular focus on the demand for smaller flats. The analysis will include: 
+• Descriptive Analysis: We will compute summary statistics (mean, median, standard deviation, etc.) for resale prices and floor areas, segmented by flat type and town. 
+• Trend Analysis: We will analyze the historical trends of resale prices and transaction volumes for different flat types to understand how they have evolved over time. 
+• Geospatial Analysis: We will visualize the average resale prices and transaction volumes on a map of Singapore to identify spatial disparities and trends. 
+• Comparative Analysis: We will compare the price appreciation and transaction volume growth across different flat types to validate and expand upon the findings of the Straits Times article.
 
 ### 7. Work Allocation
