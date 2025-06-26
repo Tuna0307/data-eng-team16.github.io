@@ -1,64 +1,144 @@
 ---
 title: "Data Eng Team 16 Project Proposal"
-author: "Team 16"
+author: "Team 16: Jiarui, Weixuan, Elsia, Haris, Shi Wei"
 format: html
 editor: visual
 ---
 
-### 1. Choosen Data Visualisation
+### 1. Chosen Data Visualization
 
-We selected the visualization from the Straits Times article:\
+We selected the visualization from the Straits Times article:
 [**“Older buyers, smaller households among factors driving demand for smaller flats”**](https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats)
 
-The selected article presents a visualization showing the upward trend in applications for smaller flats. This pattern is attributed to several demographic shifts:
+The featured chart depicts the percentage increase in HDB resale flat transactions from 2020 to 2024, categorized by flat type. Notably, it shows a 90.7% surge in transactions for 2-room flats, which strongly contrasts with more modest increases for 4-room and 5-room units. This visualization attributes these changes to several key demographic trends:
 
--   An increasing elderly population (aged 65+)
--   A decline in average household size
--   More single-person or two-person households
--   Greater interest in right-sizing among older buyers
+-   A growing population of elderly citizens (aged 65 and above), many of whom seek to right-size their homes.
+-   A steady decline in average household size, falling from 3.5 persons in 2000 to approximately 2.9 in recent years.
+-   A rise in single-person and two-person households, particularly due to later marriages and aging-in-place.
+-   Increased policy flexibility and supply of smaller flats, such as 2-room Flexi schemes, catering to senior citizens and singles.
 
-This visualization is significant as it captures how housing preferences evolve with social and demographic change. It also serves as a basis for policy review and urban planning in a rapidly aging society.
+This visualization is highly relevant for our project because it offers a clear example of how population ageing and evolving household structures directly influence public housing demand. By enhancing this static chart with dynamic and multi-dimensional data, we aim to uncover deeper patterns in demand across flat types, regions, and years. The outcome could help inform urban development policy and strategies for future housing allocation in Singapore’s maturing society.
 
-### 2. Critical Analysis
+### 2. Critical Analysis of the Original Visualization
 
 #### Strengths
 
-• Clarity and Simplicity: The bar chart is easy to read and understand, even for an audience without a background in data analysis. 
-• Effective Comparison: It provides a clear and immediate visual comparison of the percentage change in transaction volume across different flat types. 
-• Clear Title: The chart is well-titled, which helps in understanding the context of the data being presented.
+-   **Clarity and Simplicity:** The bar chart effectively presents percentage change data in a manner that is straightforward and accessible, making it suitable for general readers without a technical background.
+-   **Effective Comparison:** By organizing the data by flat type, it allows readers to quickly identify which segments of the market are experiencing the fastest growth.
+-   **Contextual Relevance:** The chart aligns well with the narrative in the article, which explores how social and demographic shifts are shaping the HDB resale landscape.
+-   **Clear Labeling:** The use of bold titles and explicit labeling helps establish context immediately.
 
 #### Weaknesses
 
-• Lack of Absolute Numbers: The visualization only presents the percentage change, which can be misleading without the absolute transaction volumes. For instance, a 90.7% increase on a small base number might be less significant than a 13.7% increase on a large base number 
-• Aggregated Data: The data is aggregated over a four-year period (2020-2024), which masks any year-on-year fluctuations or trends. 
-• Static Nature: The chart is a static image, offering no interactivity for the user to explore the data further.
+-   **Limited Granularity of Insights:** The visualization presents an aggregated view of percentage changes across flat types over a four-year period, but it lacks finer granularity. It does not show:
+    -   Year-on-year variation, which is critical for identifying short-term market shifts (e.g. policy impacts or economic shocks).
+    -   Town-level or estate-specific data, which prevents detection of spatial patterns or localized demand pressures.
+    -   Demographic segmentation (e.g. age groups, household size, income tiers), which limits the ability to assess how different population segments are influencing demand for smaller flats.
+-   **Lack of Interactivity and Customization:** The static nature of the graphic restricts user engagement and exploration. Viewers are presented with a single, author-defined view of the data and cannot:
+    -   Filter by specific years or towns.
+    -   Focus on individual flat types or demographics.
+    -   Conduct self-guided analysis.
+-   **Minimal Analytical Depth:** The original chart is purely descriptive, presenting a one-dimensional summary of percentage change. It does not:
+    -   Show base figures or total transaction volumes, making the percentage change potentially misleading.
+    -   Provide contextual explanations (e.g. why 2-room demand increased, or how policy changes like Enhanced CPF Housing Grant may have influenced behavior).
 
 ### 3. Planned Improvements
 
-To address the weaknesses of the original visualization and to provide a more comprehensive and insightful analysis, we propose to develop an interactive dashboard with the following improvements: 
-• Interactive Time Series Analysis: We will create a line chart showing the monthly or quarterly transaction volumes for each flat type from 2017 to the present. This will allow for a more granular analysis of the trends over time. 
-• Geospatial Mapping: We will develop a map-based visualization to illustrate the geographical distribution of resale flat prices and transaction volumes across different towns in Singapore. This will help in identifying spatial patterns and hotspots. 
-• Dynamic Filtering and Drill-Down: The dashboard will include interactive filters for users to slice and dice the data by town, flat type, and time period. This will enable users to conduct their own exploratory analysis. • Price and Transaction Volume Correlation: We will include scatter plots or bubble charts to explore the relationship between resale price, floor area, and transaction volume.
+To overcome the limitations and offer a more robust and informative visual analysis, our team will develop an interactive dashboard incorporating the following enhancements:
+
+-   **Time Series Visualization:** Instead of one aggregated bar chart, we will plot monthly or quarterly transaction volumes from 2017 to 2025. This will reveal how demand evolved in relation to macroeconomic events, housing policies (e.g. cooling measures), and demographic changes.
+-   **Geospatial Mapping:** Using HDB town data, we will develop a Singapore map highlighting average resale prices and transaction volumes by region. This will help surface spatial disparities and allow for estate-level insights.
+-   **Interactive Filters:** The dashboard will include filters by flat type, town, and year. This will allow users (including policymakers or researchers) to explore patterns relevant to their context.
+-   **Correlation Visuals:** Bubble charts or scatter plots will be used to examine relationships between floor area, resale price, and transaction volume. For example, we can test whether smaller flats in certain towns yield higher per-square-meter prices due to constrained supply.
+-   **Demographic Overlay (if available):** If demographic data by town is available, we will attempt to link population structure with housing demand to test assumptions about elderly and single buyers.
+
+Our final dashboard will offer clear, interactive, and multi-layered views that go beyond what a single static image can provide.
 
 ### 4. Details of Data Source
 
-The primary dataset used is the HDB Resale Flat Prices from [data.gov.sg](https://data.gov.sg/collections/189/view): - Covers data from 1990 to June 2025. - Includes flat type, floor area, resale price, town, and month.
+Our primary dataset will come from the HDB Resale Flat Prices repository on [data.gov.sg](https://data.gov.sg/collections/189/view), which offers a granular and authoritative view of public housing resale activity. Key features of this dataset include:
 
-### 5. Steps for data Cleaning and Transformation
+-   **Time Coverage:** Monthly records from January 1990 through June 2025.
+-   **Attributes:**
+    -   Flat type (e.g. 2-room, 3-room, 4-room, etc.)
+    -   Flat model and floor area (in sqm)
+    -   Town and block-level location
+    -   Month of transaction
+    -   Resale price (in SGD)
+    -   Storey range (e.g. 04–06, 10–12)
 
-The following steps will be taken to clean and transform the data for analysis: 
-1. Data Loading: The dataset will be loaded into a Python environment using the Pandas library. 
-2. Handling Missing Values: We will check for any missing values in the dataset and decide on an appropriate strategy to handle them, such as imputation or removal. 
-3. Data Type Conversion: The month column will be converted to a datetime object to facilitate time series analysis. The resale_price and floor_area_sqm columns will be ensured to be in numeric format. 
-4. Feature Engineering: We will extract the 'year' from the 'month' column to create a new 'year' feature for annual analysis. We will also process the storey_range column by splitting it into lower_storey and upper_storey and calculating an average storey for numerical analysis. 
-5. Data Structuring: The data will be structured and aggregated as needed for the different visualizations in our dashboard.
+The dataset is updated monthly and is widely used in public research, making it ideal for reproducible, policy-relevant visual analysis.
+
+Additional contextual data will be sourced from SingStat for:
+-   Population by age group
+-   Household size and composition over time
+-   Marital status and homeownership patterns
+
+Together, these datasets will enable us to connect population dynamics to housing outcomes more rigorously.
+
+**Sample of Raw Data from HDB Resale Flat Prices (data.gov.sg)**
+
+| month   | town        | flat_type | block | street_name       | storey_range | floor_area_sqm | resale_price |
+| :------ | :---------- | :-------- | :---- | :---------------- | :----------- | :------------- | :----------- |
+| 2024-01 | ANG MO KIO  | 2 ROOM    | 406   | ANG MO KIO AVE 10 | 04 TO 06     | 44             | 315000       |
+| 2024-01 | ANG MO KIO  | 3 ROOM    | 108   | ANG MO KIO AVE 4  | 01 TO 03     | 67             | 342000       |
+| 2024-01 | BEDOK       | 4 ROOM    | 516   | BEDOK NTH AVE 2   | 07 TO 09     | 92             | 535000       |
+| 2024-01 | BUKIT MERAH | 5 ROOM    | 108   | HENDERSON CRES    | 10 TO 12     | 117            | 968000       |
+| 2024-01 | CLEMENTI    | 3 ROOM    | 377   | CLEMENTI AVE 5    | 01 TO 03     | 67             | 365000       |
+
+### 5. Steps for Data Cleaning and Transformation
+
+To prepare our data for rigorous analysis and visualization within the R environment, we will follow a structured workflow using core R packages, primarily from the tidyverse suite.
+
+#### 5.1. Data Loading and Initial Inspection
+-   **Action:** The "Resale Flat Prices" dataset will be downloaded as a CSV file. We will load it into RStudio using the `readr::read_csv()` function to create a tibble (a modern data frame).
+-   **Purpose:** This initial step allows us to perform a preliminary assessment of the dataset's structure using functions like `glimpse()`, `summary()`, and `head()` to understand its dimensions, variable types, and overall content before proceeding with cleaning.
+
+#### 5.2. Missing Value Handling and Data Integrity
+-   **Action:** We will use the `naniar` or `visdat` package to visualize missing data patterns and `dplyr::summarise()` to quantify NA values in critical columns like `resale_price`, `floor_area_sqm`, and `storey_range`.
+-   **Purpose:** Identifying and addressing missing data is crucial for accurate modeling. For any NA values, we will evaluate the best strategy. If records with missing data are minimal, we may filter them out using `na.omit()` or `tidyr::drop_na()`. For more significant gaps, we will consider imputation, potentially using the median value for a given town and flat type to preserve the data's distribution.
+
+#### 5.3. Data Type Conversion
+-   **Action:** We will convert variable types to ensure they are appropriate for analysis. The `month` column (e.g., "2023-05") will be parsed into a proper Date object using the `lubridate::ym()` function. Other columns like `resale_price` and `floor_area_sqm` will be ensured to be of numeric type using `as.numeric()`.
+-   **Purpose:** Correct data types are essential for R functions to work correctly. Converting `month` to a Date object is critical for enabling time-series analysis, creating rolling averages, and plotting chronological trends.
+
+#### 5.4. Feature Engineering
+
+Using `dplyr::mutate()`, we will create several new, more informative variables:
+
+-   **Temporal Features:** We will use `lubridate` functions like `year()` and `quarter()` on our new Date column to extract the year and quarter, facilitating aggregation and trend analysis at different time scales.
+-   **Price per Square Metre (PSM):** A new column, `price_per_sqm`, will be calculated by dividing `resale_price` by `floor_area_sqm`. This normalization is key to comparing property values fairly across different flat sizes and locations.
+-   **Storey Level Conversion:** The `storey_range` (e.g., "01 TO 03") will be converted into a numeric variable. We will use `stringr` functions to extract the lower and upper bounds of the range and calculate the midpoint, allowing us to analyze the relationship between storey height and price.
+
+#### 5.5. Data Aggregation and Integration
+-   **Action:** We will leverage `dplyr::group_by()` and `dplyr::summarise()` to aggregate the cleaned data. This will allow us to create summary tables based on dimensions like town, `flat_type`, and year.
+-   **Purpose:** Aggregated data is the foundation for our visualizations and high-level analysis. It will enable us to calculate key metrics such as mean/median `price_per_sqm` by town, which is necessary for creating choropleth maps, or by time period for generating time-series plots. If external demographic data is used, it will be joined to our main dataset using a `dplyr::left_join()` operation on a common key like town.
 
 ### 6. Data Analysis Plan
 
-Our data analysis will be focused on uncovering the trends and patterns in the HDB resale market, with a particular focus on the demand for smaller flats. The analysis will include: 
-• Descriptive Analysis: We will compute summary statistics (mean, median, standard deviation, etc.) for resale prices and floor areas, segmented by flat type and town. 
-• Trend Analysis: We will analyze the historical trends of resale prices and transaction volumes for different flat types to understand how they have evolved over time. 
-• Geospatial Analysis: We will visualize the average resale prices and transaction volumes on a map of Singapore to identify spatial disparities and trends. 
-• Comparative Analysis: We will compare the price appreciation and transaction volume growth across different flat types to validate and expand upon the findings of the Straits Times article.
+Our analysis will aim to provide evidence-backed insights on how demand for smaller flats has evolved in response to demographic shifts. The main areas of analysis include:
+
+-   **Descriptive Statistics:** Calculate averages, medians, and distribution patterns of resale prices and floor areas segmented by flat type and location.
+-   **Trend Analysis:**
+    -   Track year-on-year changes in both transaction volume and resale price for 2-room, 3-room, and larger flats.
+    -   Identify notable spikes or dips in relation to external factors.
+-   **Spatial Analysis:**
+    -   Map average prices and volume by town to identify hotspots of demand.
+    -   Highlight any regional inequalities in pricing or transaction growth.
+-   **Correlation Analysis:**
+    -   Investigate links between demographic indicators and demand for smaller flats.
+    -   Test if towns with higher aging populations see greater price growth in 2-room resale units.
+-   **Exploratory Insights:**
+    -   Observe whether price appreciation in smaller flats is outpacing larger units, potentially indicating shrinking supply or over-demand.
+
+The outcome of our analysis will serve to validate, challenge, or deepen the conclusions drawn in the original news article.
 
 ### 7. Work Allocation
+
+| Task                                             | Primary Lead(s) | Supporting Member(s) | Description                                                                                                                                                                                            |
+| :----------------------------------------------- | :-------------- | :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Data Sourcing & Cleaning**                     | Jiarui          | Weixuan              | Responsible for downloading the datasets from data.gov.sg and SingStat, loading them into R, and performing initial cleaning. This includes handling missing values (NA), correcting data types, and ensuring data integrity. |
+| **Feature Engineering & Transformation**         | Weixuan         | Jiarui               | Builds upon the cleaned data to create new, analytical variables. Key tasks include calculating `price_per_sqm`, converting the `storey_range` into a numeric variable, and extracting year and quarter for time-series analysis. |
+| **Exploratory Data Analysis (EDA) & Hypothesis Testing** | Elsia           | Jiarui, Weixuan      | Conducts the initial statistical analysis to uncover patterns and validate assumptions. This involves creating summary statistics, generating preliminary plots (histograms, boxplots), and investigating initial trends to guide the final dashboard design. |
+| **Interactive Dashboard Development (Core & Time Series)** | Haris           | Shi Wei              | Leads the development of the main interactive dashboard using `flexdashboard` or `Shiny`. This includes setting up the overall layout, implementing core interactive filters (by town, flat type, year), and building the primary time-series visualization. |
+| **Geospatial & Correlation Visualizations**      | Shi Wei         | Haris, Elsia         | Focuses on developing the specialized visualizations for the dashboard. This includes creating the choropleth map to show spatial patterns by town and building the bubble/scatter plots to visualize correlations between price, floor area, and transaction volume. |

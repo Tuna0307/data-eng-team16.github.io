@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Team 16">
+<meta name="author" content="Team 16: Jiarui, Weixuan, Elsia, Haris, Shi Wei">
 
 <title>Data Eng Team 16 Project Proposal</title>
 <style>
@@ -31,15 +31,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -113,11 +110,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#choosen-data-visualisation" id="toc-choosen-data-visualisation" class="nav-link active" data-scroll-target="#choosen-data-visualisation">1. Choosen Data Visualisation</a></li>
-  <li><a href="#critical-analysis" id="toc-critical-analysis" class="nav-link" data-scroll-target="#critical-analysis">2. Critical Analysis</a></li>
+  <li><a href="#chosen-data-visualization" id="toc-chosen-data-visualization" class="nav-link active" data-scroll-target="#chosen-data-visualization">1. Chosen Data Visualization</a></li>
+  <li><a href="#critical-analysis-of-the-original-visualization" id="toc-critical-analysis-of-the-original-visualization" class="nav-link" data-scroll-target="#critical-analysis-of-the-original-visualization">2. Critical Analysis of the Original Visualization</a></li>
   <li><a href="#planned-improvements" id="toc-planned-improvements" class="nav-link" data-scroll-target="#planned-improvements">3. Planned Improvements</a></li>
   <li><a href="#details-of-data-source" id="toc-details-of-data-source" class="nav-link" data-scroll-target="#details-of-data-source">4. Details of Data Source</a></li>
-  <li><a href="#steps-for-data-cleaning-and-transformation" id="toc-steps-for-data-cleaning-and-transformation" class="nav-link" data-scroll-target="#steps-for-data-cleaning-and-transformation">5. Steps for data Cleaning and Transformation</a></li>
+  <li><a href="#steps-for-data-cleaning-and-transformation" id="toc-steps-for-data-cleaning-and-transformation" class="nav-link" data-scroll-target="#steps-for-data-cleaning-and-transformation">5. Steps for Data Cleaning and Transformation</a></li>
   <li><a href="#data-analysis-plan" id="toc-data-analysis-plan" class="nav-link" data-scroll-target="#data-analysis-plan">6. Data Analysis Plan</a></li>
   <li><a href="#work-allocation" id="toc-work-allocation" class="nav-link" data-scroll-target="#work-allocation">7. Work Allocation</a></li>
   </ul>
@@ -138,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Team 16 </p>
+             <p>Team 16: Jiarui, Weixuan, Elsia, Haris, Shi Wei </p>
           </div>
   </div>
     
@@ -151,284 +148,520 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="choosen-data-visualisation" class="level3">
-<h3 class="anchored" data-anchor-id="choosen-data-visualisation">1. Choosen Data Visualisation</h3>
-<p>We selected the visualization from the Straits Times article:<br>
-<a href="https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats"><strong>“Older buyers, smaller households among factors driving demand for smaller flats”</strong></a></p>
-<p>The selected article presents a visualization showing the upward trend in applications for smaller flats. This pattern is attributed to several demographic shifts:</p>
+<section id="chosen-data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="chosen-data-visualization">1. Chosen Data Visualization</h3>
+<p>We selected the visualization from the Straits Times article: <a href="https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats"><strong>“Older buyers, smaller households among factors driving demand for smaller flats”</strong></a></p>
+<p>The featured chart depicts the percentage increase in HDB resale flat transactions from 2020 to 2024, categorized by flat type. Notably, it shows a 90.7% surge in transactions for 2-room flats, which strongly contrasts with more modest increases for 4-room and 5-room units. This visualization attributes these changes to several key demographic trends:</p>
 <ul>
-<li>An increasing elderly population (aged 65+)</li>
-<li>A decline in average household size</li>
-<li>More single-person or two-person households</li>
-<li>Greater interest in right-sizing among older buyers</li>
+<li>A growing population of elderly citizens (aged 65 and above), many of whom seek to right-size their homes.</li>
+<li>A steady decline in average household size, falling from 3.5 persons in 2000 to approximately 2.9 in recent years.</li>
+<li>A rise in single-person and two-person households, particularly due to later marriages and aging-in-place.</li>
+<li>Increased policy flexibility and supply of smaller flats, such as 2-room Flexi schemes, catering to senior citizens and singles.</li>
 </ul>
-<p>This visualization is significant as it captures how housing preferences evolve with social and demographic change. It also serves as a basis for policy review and urban planning in a rapidly aging society.</p>
+<p>This visualization is highly relevant for our project because it offers a clear example of how population ageing and evolving household structures directly influence public housing demand. By enhancing this static chart with dynamic and multi-dimensional data, we aim to uncover deeper patterns in demand across flat types, regions, and years. The outcome could help inform urban development policy and strategies for future housing allocation in Singapore’s maturing society.</p>
 </section>
-<section id="critical-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="critical-analysis">2. Critical Analysis</h3>
+<section id="critical-analysis-of-the-original-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="critical-analysis-of-the-original-visualization">2. Critical Analysis of the Original Visualization</h3>
 <section id="strengths" class="level4">
 <h4 class="anchored" data-anchor-id="strengths">Strengths</h4>
-<p>• Clarity and Simplicity: The bar chart is easy to read and understand, even for an audience without a background in data analysis. • Effective Comparison: It provides a clear and immediate visual comparison of the percentage change in transaction volume across different flat types. • Clear Title: The chart is well-titled, which helps in understanding the context of the data being presented.</p>
+<ul>
+<li><strong>Clarity and Simplicity:</strong> The bar chart effectively presents percentage change data in a manner that is straightforward and accessible, making it suitable for general readers without a technical background.</li>
+<li><strong>Effective Comparison:</strong> By organizing the data by flat type, it allows readers to quickly identify which segments of the market are experiencing the fastest growth.</li>
+<li><strong>Contextual Relevance:</strong> The chart aligns well with the narrative in the article, which explores how social and demographic shifts are shaping the HDB resale landscape.</li>
+<li><strong>Clear Labeling:</strong> The use of bold titles and explicit labeling helps establish context immediately.</li>
+</ul>
 </section>
 <section id="weaknesses" class="level4">
 <h4 class="anchored" data-anchor-id="weaknesses">Weaknesses</h4>
-<p>• Lack of Absolute Numbers: The visualization only presents the percentage change, which can be misleading without the absolute transaction volumes. For instance, a 90.7% increase on a small base number might be less significant than a 13.7% increase on a large base number • Aggregated Data: The data is aggregated over a four-year period (2020-2024), which masks any year-on-year fluctuations or trends. • Static Nature: The chart is a static image, offering no interactivity for the user to explore the data further.</p>
+<ul>
+<li><strong>Limited Granularity of Insights:</strong> The visualization presents an aggregated view of percentage changes across flat types over a four-year period, but it lacks finer granularity. It does not show:
+<ul>
+<li>Year-on-year variation, which is critical for identifying short-term market shifts (e.g.&nbsp;policy impacts or economic shocks).</li>
+<li>Town-level or estate-specific data, which prevents detection of spatial patterns or localized demand pressures.</li>
+<li>Demographic segmentation (e.g.&nbsp;age groups, household size, income tiers), which limits the ability to assess how different population segments are influencing demand for smaller flats.</li>
+</ul></li>
+<li><strong>Lack of Interactivity and Customization:</strong> The static nature of the graphic restricts user engagement and exploration. Viewers are presented with a single, author-defined view of the data and cannot:
+<ul>
+<li>Filter by specific years or towns.</li>
+<li>Focus on individual flat types or demographics.</li>
+<li>Conduct self-guided analysis.</li>
+</ul></li>
+<li><strong>Minimal Analytical Depth:</strong> The original chart is purely descriptive, presenting a one-dimensional summary of percentage change. It does not:
+<ul>
+<li>Show base figures or total transaction volumes, making the percentage change potentially misleading.</li>
+<li>Provide contextual explanations (e.g.&nbsp;why 2-room demand increased, or how policy changes like Enhanced CPF Housing Grant may have influenced behavior).</li>
+</ul></li>
+</ul>
 </section>
 </section>
 <section id="planned-improvements" class="level3">
 <h3 class="anchored" data-anchor-id="planned-improvements">3. Planned Improvements</h3>
-<p>To address the weaknesses of the original visualization and to provide a more comprehensive and insightful analysis, we propose to develop an interactive dashboard with the following improvements: • Interactive Time Series Analysis: We will create a line chart showing the monthly or quarterly transaction volumes for each flat type from 2017 to the present. This will allow for a more granular analysis of the trends over time. • Geospatial Mapping: We will develop a map-based visualization to illustrate the geographical distribution of resale flat prices and transaction volumes across different towns in Singapore. This will help in identifying spatial patterns and hotspots. • Dynamic Filtering and Drill-Down: The dashboard will include interactive filters for users to slice and dice the data by town, flat type, and time period. This will enable users to conduct their own exploratory analysis. • Price and Transaction Volume Correlation: We will include scatter plots or bubble charts to explore the relationship between resale price, floor area, and transaction volume.</p>
+<p>To overcome the limitations and offer a more robust and informative visual analysis, our team will develop an interactive dashboard incorporating the following enhancements:</p>
+<ul>
+<li><strong>Time Series Visualization:</strong> Instead of one aggregated bar chart, we will plot monthly or quarterly transaction volumes from 2017 to 2025. This will reveal how demand evolved in relation to macroeconomic events, housing policies (e.g.&nbsp;cooling measures), and demographic changes.</li>
+<li><strong>Geospatial Mapping:</strong> Using HDB town data, we will develop a Singapore map highlighting average resale prices and transaction volumes by region. This will help surface spatial disparities and allow for estate-level insights.</li>
+<li><strong>Interactive Filters:</strong> The dashboard will include filters by flat type, town, and year. This will allow users (including policymakers or researchers) to explore patterns relevant to their context.</li>
+<li><strong>Correlation Visuals:</strong> Bubble charts or scatter plots will be used to examine relationships between floor area, resale price, and transaction volume. For example, we can test whether smaller flats in certain towns yield higher per-square-meter prices due to constrained supply.</li>
+<li><strong>Demographic Overlay (if available):</strong> If demographic data by town is available, we will attempt to link population structure with housing demand to test assumptions about elderly and single buyers.</li>
+</ul>
+<p>Our final dashboard will offer clear, interactive, and multi-layered views that go beyond what a single static image can provide.</p>
 </section>
 <section id="details-of-data-source" class="level3">
 <h3 class="anchored" data-anchor-id="details-of-data-source">4. Details of Data Source</h3>
-<p>The primary dataset used is the HDB Resale Flat Prices from <a href="https://data.gov.sg/collections/189/view">data.gov.sg</a>: - Covers data from 1990 to June 2025. - Includes flat type, floor area, resale price, town, and month.</p>
+<p>Our primary dataset will come from the HDB Resale Flat Prices repository on <a href="https://data.gov.sg/collections/189/view">data.gov.sg</a>, which offers a granular and authoritative view of public housing resale activity. Key features of this dataset include:</p>
+<ul>
+<li><strong>Time Coverage:</strong> Monthly records from January 1990 through June 2025.</li>
+<li><strong>Attributes:</strong>
+<ul>
+<li>Flat type (e.g.&nbsp;2-room, 3-room, 4-room, etc.)</li>
+<li>Flat model and floor area (in sqm)</li>
+<li>Town and block-level location</li>
+<li>Month of transaction</li>
+<li>Resale price (in SGD)</li>
+<li>Storey range (e.g.&nbsp;04–06, 10–12)</li>
+</ul></li>
+</ul>
+<p>The dataset is updated monthly and is widely used in public research, making it ideal for reproducible, policy-relevant visual analysis.</p>
+<p>Additional contextual data will be sourced from SingStat for: - Population by age group - Household size and composition over time - Marital status and homeownership patterns</p>
+<p>Together, these datasets will enable us to connect population dynamics to housing outcomes more rigorously.</p>
+<p><strong>Sample of Raw Data from HDB Resale Flat Prices (data.gov.sg)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">month</th>
+<th style="text-align: left;">town</th>
+<th style="text-align: left;">flat_type</th>
+<th style="text-align: left;">block</th>
+<th style="text-align: left;">street_name</th>
+<th style="text-align: left;">storey_range</th>
+<th style="text-align: left;">floor_area_sqm</th>
+<th style="text-align: left;">resale_price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2024-01</td>
+<td style="text-align: left;">ANG MO KIO</td>
+<td style="text-align: left;">2 ROOM</td>
+<td style="text-align: left;">406</td>
+<td style="text-align: left;">ANG MO KIO AVE 10</td>
+<td style="text-align: left;">04 TO 06</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">315000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-01</td>
+<td style="text-align: left;">ANG MO KIO</td>
+<td style="text-align: left;">3 ROOM</td>
+<td style="text-align: left;">108</td>
+<td style="text-align: left;">ANG MO KIO AVE 4</td>
+<td style="text-align: left;">01 TO 03</td>
+<td style="text-align: left;">67</td>
+<td style="text-align: left;">342000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01</td>
+<td style="text-align: left;">BEDOK</td>
+<td style="text-align: left;">4 ROOM</td>
+<td style="text-align: left;">516</td>
+<td style="text-align: left;">BEDOK NTH AVE 2</td>
+<td style="text-align: left;">07 TO 09</td>
+<td style="text-align: left;">92</td>
+<td style="text-align: left;">535000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-01</td>
+<td style="text-align: left;">BUKIT MERAH</td>
+<td style="text-align: left;">5 ROOM</td>
+<td style="text-align: left;">108</td>
+<td style="text-align: left;">HENDERSON CRES</td>
+<td style="text-align: left;">10 TO 12</td>
+<td style="text-align: left;">117</td>
+<td style="text-align: left;">968000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01</td>
+<td style="text-align: left;">CLEMENTI</td>
+<td style="text-align: left;">3 ROOM</td>
+<td style="text-align: left;">377</td>
+<td style="text-align: left;">CLEMENTI AVE 5</td>
+<td style="text-align: left;">01 TO 03</td>
+<td style="text-align: left;">67</td>
+<td style="text-align: left;">365000</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="steps-for-data-cleaning-and-transformation" class="level3">
-<h3 class="anchored" data-anchor-id="steps-for-data-cleaning-and-transformation">5. Steps for data Cleaning and Transformation</h3>
-<p>The following steps will be taken to clean and transform the data for analysis: 1. Data Loading: The dataset will be loaded into a Python environment using the Pandas library. 2. Handling Missing Values: We will check for any missing values in the dataset and decide on an appropriate strategy to handle them, such as imputation or removal. 3. Data Type Conversion: The month column will be converted to a datetime object to facilitate time series analysis. The resale_price and floor_area_sqm columns will be ensured to be in numeric format. 4. Feature Engineering: We will extract the ‘year’ from the ‘month’ column to create a new ‘year’ feature for annual analysis. We will also process the storey_range column by splitting it into lower_storey and upper_storey and calculating an average storey for numerical analysis. 5. Data Structuring: The data will be structured and aggregated as needed for the different visualizations in our dashboard.</p>
+<h3 class="anchored" data-anchor-id="steps-for-data-cleaning-and-transformation">5. Steps for Data Cleaning and Transformation</h3>
+<p>To prepare our data for rigorous analysis and visualization within the R environment, we will follow a structured workflow using core R packages, primarily from the tidyverse suite.</p>
+<section id="data-loading-and-initial-inspection" class="level4">
+<h4 class="anchored" data-anchor-id="data-loading-and-initial-inspection">5.1. Data Loading and Initial Inspection</h4>
+<ul>
+<li><strong>Action:</strong> The “Resale Flat Prices” dataset will be downloaded as a CSV file. We will load it into RStudio using the <code>readr::read_csv()</code> function to create a tibble (a modern data frame).</li>
+<li><strong>Purpose:</strong> This initial step allows us to perform a preliminary assessment of the dataset’s structure using functions like <code>glimpse()</code>, <code>summary()</code>, and <code>head()</code> to understand its dimensions, variable types, and overall content before proceeding with cleaning.</li>
+</ul>
+</section>
+<section id="missing-value-handling-and-data-integrity" class="level4">
+<h4 class="anchored" data-anchor-id="missing-value-handling-and-data-integrity">5.2. Missing Value Handling and Data Integrity</h4>
+<ul>
+<li><strong>Action:</strong> We will use the <code>naniar</code> or <code>visdat</code> package to visualize missing data patterns and <code>dplyr::summarise()</code> to quantify NA values in critical columns like <code>resale_price</code>, <code>floor_area_sqm</code>, and <code>storey_range</code>.</li>
+<li><strong>Purpose:</strong> Identifying and addressing missing data is crucial for accurate modeling. For any NA values, we will evaluate the best strategy. If records with missing data are minimal, we may filter them out using <code>na.omit()</code> or <code>tidyr::drop_na()</code>. For more significant gaps, we will consider imputation, potentially using the median value for a given town and flat type to preserve the data’s distribution.</li>
+</ul>
+</section>
+<section id="data-type-conversion" class="level4">
+<h4 class="anchored" data-anchor-id="data-type-conversion">5.3. Data Type Conversion</h4>
+<ul>
+<li><strong>Action:</strong> We will convert variable types to ensure they are appropriate for analysis. The <code>month</code> column (e.g., “2023-05”) will be parsed into a proper Date object using the <code>lubridate::ym()</code> function. Other columns like <code>resale_price</code> and <code>floor_area_sqm</code> will be ensured to be of numeric type using <code>as.numeric()</code>.</li>
+<li><strong>Purpose:</strong> Correct data types are essential for R functions to work correctly. Converting <code>month</code> to a Date object is critical for enabling time-series analysis, creating rolling averages, and plotting chronological trends.</li>
+</ul>
+</section>
+<section id="feature-engineering" class="level4">
+<h4 class="anchored" data-anchor-id="feature-engineering">5.4. Feature Engineering</h4>
+<p>Using <code>dplyr::mutate()</code>, we will create several new, more informative variables:</p>
+<ul>
+<li><strong>Temporal Features:</strong> We will use <code>lubridate</code> functions like <code>year()</code> and <code>quarter()</code> on our new Date column to extract the year and quarter, facilitating aggregation and trend analysis at different time scales.</li>
+<li><strong>Price per Square Metre (PSM):</strong> A new column, <code>price_per_sqm</code>, will be calculated by dividing <code>resale_price</code> by <code>floor_area_sqm</code>. This normalization is key to comparing property values fairly across different flat sizes and locations.</li>
+<li><strong>Storey Level Conversion:</strong> The <code>storey_range</code> (e.g., “01 TO 03”) will be converted into a numeric variable. We will use <code>stringr</code> functions to extract the lower and upper bounds of the range and calculate the midpoint, allowing us to analyze the relationship between storey height and price.</li>
+</ul>
+</section>
+<section id="data-aggregation-and-integration" class="level4">
+<h4 class="anchored" data-anchor-id="data-aggregation-and-integration">5.5. Data Aggregation and Integration</h4>
+<ul>
+<li><strong>Action:</strong> We will leverage <code>dplyr::group_by()</code> and <code>dplyr::summarise()</code> to aggregate the cleaned data. This will allow us to create summary tables based on dimensions like town, <code>flat_type</code>, and year.</li>
+<li><strong>Purpose:</strong> Aggregated data is the foundation for our visualizations and high-level analysis. It will enable us to calculate key metrics such as mean/median <code>price_per_sqm</code> by town, which is necessary for creating choropleth maps, or by time period for generating time-series plots. If external demographic data is used, it will be joined to our main dataset using a <code>dplyr::left_join()</code> operation on a common key like town.</li>
+</ul>
+</section>
 </section>
 <section id="data-analysis-plan" class="level3">
 <h3 class="anchored" data-anchor-id="data-analysis-plan">6. Data Analysis Plan</h3>
-<p>Our data analysis will be focused on uncovering the trends and patterns in the HDB resale market, with a particular focus on the demand for smaller flats. The analysis will include: • Descriptive Analysis: We will compute summary statistics (mean, median, standard deviation, etc.) for resale prices and floor areas, segmented by flat type and town. • Trend Analysis: We will analyze the historical trends of resale prices and transaction volumes for different flat types to understand how they have evolved over time. • Geospatial Analysis: We will visualize the average resale prices and transaction volumes on a map of Singapore to identify spatial disparities and trends. • Comparative Analysis: We will compare the price appreciation and transaction volume growth across different flat types to validate and expand upon the findings of the Straits Times article.</p>
+<p>Our analysis will aim to provide evidence-backed insights on how demand for smaller flats has evolved in response to demographic shifts. The main areas of analysis include:</p>
+<ul>
+<li><strong>Descriptive Statistics:</strong> Calculate averages, medians, and distribution patterns of resale prices and floor areas segmented by flat type and location.</li>
+<li><strong>Trend Analysis:</strong>
+<ul>
+<li>Track year-on-year changes in both transaction volume and resale price for 2-room, 3-room, and larger flats.</li>
+<li>Identify notable spikes or dips in relation to external factors.</li>
+</ul></li>
+<li><strong>Spatial Analysis:</strong>
+<ul>
+<li>Map average prices and volume by town to identify hotspots of demand.</li>
+<li>Highlight any regional inequalities in pricing or transaction growth.</li>
+</ul></li>
+<li><strong>Correlation Analysis:</strong>
+<ul>
+<li>Investigate links between demographic indicators and demand for smaller flats.</li>
+<li>Test if towns with higher aging populations see greater price growth in 2-room resale units.</li>
+</ul></li>
+<li><strong>Exploratory Insights:</strong>
+<ul>
+<li>Observe whether price appreciation in smaller flats is outpacing larger units, potentially indicating shrinking supply or over-demand.</li>
+</ul></li>
+</ul>
+<p>The outcome of our analysis will serve to validate, challenge, or deepen the conclusions drawn in the original news article.</p>
 </section>
 <section id="work-allocation" class="level3">
 <h3 class="anchored" data-anchor-id="work-allocation">7. Work Allocation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Task</th>
+<th style="text-align: left;">Primary Lead(s)</th>
+<th style="text-align: left;">Supporting Member(s)</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data Sourcing &amp; Cleaning</strong></td>
+<td style="text-align: left;">Jiarui</td>
+<td style="text-align: left;">Weixuan</td>
+<td style="text-align: left;">Responsible for downloading the datasets from data.gov.sg and SingStat, loading them into R, and performing initial cleaning. This includes handling missing values (NA), correcting data types, and ensuring data integrity.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Feature Engineering &amp; Transformation</strong></td>
+<td style="text-align: left;">Weixuan</td>
+<td style="text-align: left;">Jiarui</td>
+<td style="text-align: left;">Builds upon the cleaned data to create new, analytical variables. Key tasks include calculating <code>price_per_sqm</code>, converting the <code>storey_range</code> into a numeric variable, and extracting year and quarter for time-series analysis.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Exploratory Data Analysis (EDA) &amp; Hypothesis Testing</strong></td>
+<td style="text-align: left;">Elsia</td>
+<td style="text-align: left;">Jiarui, Weixuan</td>
+<td style="text-align: left;">Conducts the initial statistical analysis to uncover patterns and validate assumptions. This involves creating summary statistics, generating preliminary plots (histograms, boxplots), and investigating initial trends to guide the final dashboard design.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Interactive Dashboard Development (Core &amp; Time Series)</strong></td>
+<td style="text-align: left;">Haris</td>
+<td style="text-align: left;">Shi Wei</td>
+<td style="text-align: left;">Leads the development of the main interactive dashboard using <code>flexdashboard</code> or <code>Shiny</code>. This includes setting up the overall layout, implementing core interactive filters (by town, flat type, year), and building the primary time-series visualization.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Geospatial &amp; Correlation Visualizations</strong></td>
+<td style="text-align: left;">Shi Wei</td>
+<td style="text-align: left;">Haris, Elsia</td>
+<td style="text-align: left;">Focuses on developing the specialized visualizations for the dashboard. This includes creating the choropleth map to show spatial patterns by town and building the bubble/scatter plots to visualize correlations between price, floor area, and transaction volume.</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -436,185 +669,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
