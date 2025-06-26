@@ -11,3 +11,24 @@ We selected the visualization from the Straits Times article:\
 [**“Older buyers, smaller households among factors driving demand for smaller flats”**](https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats)
 
 The Chart shows the percentage changes in the number of HDB flat transactions due to demographic changes, such as an ageing population, shrinking household sizes and more singles opting to live independently, have further boosted demand for smaller flats.
+
+### 2. Critical Analysis
+
+#### Strengths
+
+#### Weaknesses
+
+
+### 3. Planned Improvements
+
+
+### 4. Details of Data Source
+
+
+### 5. Steps for data Cleaning and Transformation
+
+
+### 6. Data Analysis Plan
+
+
+### 7. Work Allocation
