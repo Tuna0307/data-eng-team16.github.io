@@ -19,6 +19,12 @@ The featured chart depicts the percentage increase in HDB resale flat transactio
 
 This visualization is highly relevant for our project because it offers a clear example of how population ageing and evolving household structures directly influence public housing demand. By enhancing this static chart with dynamic and multi-dimensional data, we aim to uncover deeper patterns in demand across flat types, regions, and years. The outcome could help inform urban development policy and strategies for future housing allocation in Singapore’s maturing society.
 
+#### Original Visualisation 1
+![Figure 1: Percentage Change in Number of HDB Transactions](Original_Visualisation_1.png)
+
+#### Original Visualisation 2
+![Figure 2: Percentage Change in Resale Price of HDB flats](Original_Visualisation_2.png)
+
 ### 2. Critical Analysis of the Original Visualization
 
 #### Strengths
