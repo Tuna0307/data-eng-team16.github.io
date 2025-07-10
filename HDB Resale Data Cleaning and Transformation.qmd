@@ -1,0 +1,302 @@
+---
+title: "HDB Resale Data Cleaning and Transformation"
+author: "Team 16"
+format: html
+editor: visual
+---
+
+## AAI1001 - Data Engineering and Visualization Project
+
+This document outlines the enhanced data cleaning and transformation process for analyzing HDB resale flat transactions. It builds upon the original script by incorporating a more dynamic approach to outlier handling for better reproducibility.
+
+### 1. Setup and Library Loading
+
+This chunk checks if each package is installed before loading it. If a package is missing, it will be automatically installed.
+
+```{r setup, message=FALSE, warning=FALSE}
+# This chunk checks if each package is installed. If not, it installs it.
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("lubridate")) install.packages("lubridate")
+if (!require("readr")) install.packages("readr")
+if (!require("naniar")) install.packages("naniar")
+if (!require("visdat")) install.packages("visdat")
+if (!require("stringr")) install.packages("stringr")
+if (!require("janitor")) install.packages("janitor") # This line fixes the error
+if (!require("scales")) install.packages("scales")
+
+# Load all required libraries
+library(tidyverse)
+library(lubridate)
+library(readr)
+library(naniar)
+library(visdat)
+library(stringr)
+library(janitor)
+library(scales)
+
+# Set options for better output
+options(scipen = 999)  # Disable scientific notation
+options(dplyr.summarise.inform = FALSE) # Suppress summarise messages
+```
+
+### 2. Data Loading and Initial Inspection
+
+This section loads and combines the multiple HDB resale data CSV files into a single dataframe.
+
+```{r data_loading}
+# Function to load and combine multiple CSV files
+load_hdb_data <- function(file_paths) {
+  # We explicitly tell read_csv to treat 'remaining_lease' as a character column
+  # for all files to prevent type conflicts.
+  combined_data <- file_paths %>%
+    map_dfr(~ read_csv(.x, 
+                       col_types = cols(remaining_lease = col_character()), 
+                       show_col_types = FALSE)) %>%
+    distinct()  # Remove any duplicate rows
+  
+  return(combined_data)
+}
+
+# Define the paths to your files
+file_paths <- c(
+  "testcleaning.csv"
+)
+
+# Load and combine data
+raw_data <- load_hdb_data(file_paths)
+raw_data <- janitor::clean_names(raw_data)
+
+# Initial inspection
+cat("Dataset dimensions:", dim(raw_data), "\n")
+glimpse(raw_data)
+```
+
+### 3. Missing Value Analysis and Handling
+
+Here, we visualize and quantify missing data, then remove rows where critical information is missing.
+
+```{r missing_value_analysis}
+
+# First, create a smaller, random sample of the data for visualization.
+data_sample_for_vis <- slice_sample(raw_data, n = 80000)
+
+# Now, visualize the missing patterns on the SMALL sample. This will now work.
+vis_miss(data_sample_for_vis)
+
+# Remove rows with missing critical information from the FULL raw_data dataframe.
+cleaned_data <- raw_data %>%
+  drop_na(resale_price, floor_area_sqm, month, town, flat_type)
+
+cat("Rows removed due to missing critical data:", nrow(raw_data) - nrow(cleaned_data), "\n")
+cat("Remaining rows:", nrow(cleaned_data), "\n")
+```
+
+### 4. Data Type Conversion and Standardization
+
+We convert columns to their appropriate data types and standardize text formats for consistency.
+
+```{r data_type_conversion}
+processed_data <- cleaned_data %>%
+  mutate(
+    # Convert month to proper Date format
+    month = ym(month),
+    
+    # Ensure numeric columns are properly formatted
+    resale_price = as.numeric(resale_price),
+    floor_area_sqm = as.numeric(floor_area_sqm),
+    
+    # Standardize text columns (e.g., trim whitespace, convert to consistent case)
+    town = str_to_upper(str_trim(town)),
+    flat_type = str_to_upper(str_trim(flat_type)),
+    flat_model = str_to_upper(str_trim(flat_model)),
+    street_name = str_to_title(str_trim(street_name))
+  )
+
+cat("Date range:", as.character(min(processed_data$month)), "to", as.character(max(processed_data$month)), "\n")
+```
+
+### 5. Feature Engineering
+
+We create several new, informative variables to support our analysis.
+
+```{r feature_engineering}
+engineered_data <- processed_data %>%
+  mutate(
+    # Extract temporal features
+    year = year(month),
+    quarter = quarter(month, with_year = TRUE),
+    
+    # Calculate price per square meter
+    price_per_sqm = round(resale_price / floor_area_sqm, 2),
+    
+    # Extract storey information and create a numeric midpoint
+    storey_mid = sapply(str_split(storey_range, " TO "), function(x) mean(as.numeric(x))),
+    
+    # Categorize flat types for broader analysis
+    flat_category = case_when(
+      flat_type %in% c("1 ROOM", "2 ROOM") ~ "Small (1-2 Room)",
+      flat_type == "3 ROOM" ~ "Medium (3 Room)",
+      flat_type %in% c("4 ROOM", "5 ROOM") ~ "Large (4-5 Room)",
+      TRUE ~ "Others"
+    )
+  )
+
+cat("New variables created successfully!\n")
+glimpse(engineered_data)
+```
+
+### 6. Dynamic Outlier Boundary Calculation
+
+Instead of using fixed values, we calculate outlier boundaries dynamically using the IQR method for each flat type. This makes our analysis more robust and reproducible.
+
+```{r data_quality_checks}
+# Calculate the lower and upper bounds for resale_price for each flat type
+outlier_bounds <- engineered_data %>%
+  group_by(flat_type) %>%
+  summarise(
+    lower_bound = quantile(resale_price, 0.25, na.rm = TRUE) - 1.5 * IQR(resale_price, na.rm = TRUE),
+    upper_bound = quantile(resale_price, 0.75, na.rm = TRUE) + 1.5 * IQR(resale_price, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+print("Calculated outlier bounds for resale price:")
+print(outlier_bounds)
+
+# Sanity check for unrealistic values in the dataset
+quality_check <- engineered_data %>%
+  summarise(
+    negative_prices = sum(resale_price < 0, na.rm = TRUE),
+    zero_areas = sum(floor_area_sqm <= 0, na.rm = TRUE)
+  )
+
+print("Data quality summary:")
+print(quality_check)
+```
+
+### 7. Data Filtering and Final Preparation
+
+We filter the data for our project's focus period (2020-2024) and remove outliers based on the dynamic bounds calculated in the previous step.
+
+```{r final_data_preparation}
+# Join the outlier bounds to the main dataset and then filter
+project_data <- engineered_data %>%
+  left_join(outlier_bounds, by = "flat_type") %>%
+  filter(
+    # Filter for the project's time period
+    year >= 2020 & year <= 2024,
+    
+    # Dynamic outlier removal for price based on flat type
+    resale_price >= lower_bound & resale_price <= upper_bound,
+    
+    # Apply additional reasonable sanity checks
+    floor_area_sqm > 20 & floor_area_sqm < 250,
+    price_per_sqm > 1000 & price_per_sqm < 20000
+  ) %>%
+  # Remove the temporary bound columns
+  select(-lower_bound, -upper_bound)
+
+cat("Final dataset dimensions after filtering:", dim(project_data), "\n")
+cat("Years covered:", paste(sort(unique(project_data$year)), collapse = ", "), "\n")
+```
+
+### 8. Summary Statistics for Analysis
+
+We now create a summary table based on our clean, project-focused data.
+
+```{r summary_statistics}
+summary_by_type_year <- project_data %>%
+  group_by(flat_type, year) %>%
+  summarise(
+    transaction_count = n(),
+    median_price = median(resale_price, na.rm = TRUE),
+    mean_price = mean(resale_price, na.rm = TRUE),
+    median_psm = median(price_per_sqm, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Display summary for key flat types
+key_flat_types <- c("2 ROOM", "3 ROOM", "4 ROOM", "5 ROOM", "EXECUTIVE")
+summary_by_type_year %>%
+  filter(flat_type %in% key_flat_types) %>%
+  arrange(flat_type, year) %>%
+  print(n = 25)
+```
+
+### 9. Percentage Change Analysis
+
+To replicate and critique the original visualization, we calculate the percentage change in transactions from 2020 to 2024. We also create a `flat_type_label` for cleaner plotting.
+
+```{r percentage_change_analysis}
+
+percentage_change <- project_data %>%
+  filter(year %in% c(2020, 2024)) %>%
+  group_by(flat_type, year) %>%
+  summarise(transaction_count = n(), .groups = "drop") %>%
+  
+  complete(flat_type, year = c(2020, 2024), fill = list(transaction_count = 0)) %>%
+  
+  pivot_wider(names_from = year, 
+              values_from = transaction_count, 
+              names_prefix = "year_") %>%
+  
+  mutate(
+    percentage_change = if_else(year_2020 > 0, 
+                                round(((year_2024 - year_2020) / year_2020) * 100, 1), 
+                                NA_real_), # Set to NA if 2020 count is 0
+    absolute_change = year_2024 - year_2020,
+    # Create a clean label for plotting
+    flat_type_label = str_replace(flat_type, " ROOM", "-room") %>% str_to_title()
+  ) %>%
+  arrange(desc(percentage_change))
+
+print("Percentage change in transactions (2020-2024):")
+print(percentage_change)
+```
+
+### 10. Data Export for Visualization and Analysis
+
+We save the cleaned data and summary tables to CSV files for use in our visualization tools and final report.
+
+```{r data_export}
+# Create a 'data_output' directory if it doesn't exist
+if (!dir.exists("data_output")) {
+  dir.create("data_output")
+}
+
+# Save the final datasets
+write_csv(project_data, "data_output/cleaned_hdb_resale_data.csv")
+write_csv(summary_by_type_year, "data_output/summary_by_type_year.csv")
+write_csv(percentage_change, "data_output/percentage_change_analysis.csv")
+
+cat("Data cleaning completed successfully!\n")
+cat("Files saved in 'data_output/' directory.\n")
+```
+
+### 11. Final Data Validation Summary
+
+A final check to confirm the state of our prepared dataset.
+
+```{r validation_summary}
+validation_summary <- list(
+  total_records = nrow(project_data),
+  date_range = paste(min(project_data$month), "to", max(project_data$month)),
+  flat_types_count = length(unique(project_data$flat_type)),
+  towns_count = length(unique(project_data$town)),
+  years = sort(unique(project_data$year)),
+  price_range = paste0("$", format(min(project_data$resale_price), big.mark = ","), 
+                      " to $", format(max(project_data$resale_price), big.mark = ",")),
+  missing_values_final = sum(is.na(project_data))
+)
+
+cat("=== DATA VALIDATION SUMMARY ===\n")
+cat("Total records in final dataset:", validation_summary$total_records, "\n")
+cat("Date range:", validation_summary$date_range, "\n")
+cat("Number of unique flat types:", validation_summary$flat_types_count, "\n")
+cat("Number of unique towns:", validation_summary$towns_count, "\n")
+cat("Years covered:", paste(validation_summary$years, collapse = ", "), "\n")
+cat("Final price range:", validation_summary$price_range, "\n")
+cat("Total missing values in final dataset:", validation_summary$missing_values_final, "\n")
+cat("===============================\n")
+```
+
+---
