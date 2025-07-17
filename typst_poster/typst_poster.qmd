@@ -1,0 +1,15 @@
+---
+title: Percentage Change in Prices
+format:
+  poster-typst: 
+    keep-typ: true
+    size: "36x24"
+    poster-authors: "Lim Jia Rui"
+    departments: "&nbsp;"
+    institution-logo: "./images/sit.png"
+    footer-text: "AAI1001 AY24/25 Tri 2 Team Project"
+    footer-url: "&nbsp;"
+    footer-emails: "Team 16"
+    footer-color: "ebcfb2"
+---
+

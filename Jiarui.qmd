@@ -2,32 +2,6 @@
 title: "Jiarui"
 format: html
 ---
-```{r}
-# 1. volume bars (stacked)
-vol_fig <- plot_ly() %>% 
-  add_bars(data = summary_data, x = ~year, y = ~transaction_count,
-           color = ~flat_type, legendgroup = ~flat_type,
-           hovertemplate = "Year %{x}<br>%{y} transactions<extra></extra>") %>% 
-  layout(barmode = "stack",
-         yaxis = list(title = "Transactions"),
-         showlegend = FALSE)
-
-# 2. price lines
-price_fig <- plot_ly() %>% 
-  add_lines(data = summary_data, x = ~year, y = ~median_price,
-            color = ~flat_type, legendgroup = ~flat_type,
-            line = list(width = 2),
-            hovertemplate = "Year %{x}<br>$%{y:,.0f}<extra></extra>") %>% 
-  layout(yaxis = list(title = "Median Price", tickprefix = "$"))
-
-# 3. combine
-subplot(vol_fig, price_fig, nrows = 2, shareX = TRUE, heights = c(.58,.42)) %>%
-  layout(title = "HDB Resale Volume & Price Evolution (2020-2024)",
-         legend = list(orientation = 'h', y = -0.1)) %>% 
-  config(displayModeBar = FALSE)
-
-```
-
 
 ```{r}
 # ── Multi‐Line Plot: Median HDB Resale Price by Flat Type with % Change ──────────
