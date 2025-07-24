@@ -25,7 +25,7 @@ We set out to reconstruct and enhance this chart in R, creating a **publication-
 
 # Original Visualisation
 [Original Visualisation](images/original.png)
-
+yes
 # Critical Assessment of the Original Visualization
 
 1. **Unordered Categories**  
