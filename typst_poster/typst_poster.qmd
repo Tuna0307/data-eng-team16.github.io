@@ -15,14 +15,8 @@ format:
 
 # Introduction
 
-The Singapore public-housing market has undergone pronounced shifts from 2020 to 2024, driven by demographic trends such as population ageing, household “rightsizing,” and policy changes like the rollout of the 2-Room Flexi Scheme. Our project builds on a Straits Times graphic (STRAITS TIMES GRAPHICS, 2025) that maps the **percentage change in HDB resale prices by flat type** over this period. While that original visualization adeptly highlights the surge in small-flat prices, it omits context on transaction volumes, orders categories counter-intuitively, and relies on a uniform grey palette (with minimal accenting) that obscures meaningful above-/below-average patterns.
+The Singapore public-housing market has undergone pronounced shifts from 2020 to 2024, driven by demographic trends such as population ageing, household “rightsizing,” and policy changes like the rollout of the 2-Room Flexi Scheme. Our project builds on a Straits Times graphic (STRAITS TIMES GRAPHICS, 2025) that maps the **percentage change in HDB resale prices by flat type** over this period. Figure 1 illustrates the percentage change in resale prices by flat type—from 2020 to 2024—using data sourced from Data.gov.sg and Orangetee & Tie Research & Analytics. By comparing growth across 1‑room through Multi‑generation flats, this visualization highlights which segments have seen the strongest appreciation. We can build on this static snapshot by adding interactive filters, time-based x-axis and integrating transaction prices to deepen our insights into housing‑type–specific trends.
 
-We set out to reconstruct and enhance this chart in R, creating a **publication-ready bar chart** that:
-
-1. Orders flat types by descending price growth  
-2. Uses a diverging/single-accent palette to spotlight key deviations from the mean  
-3. Directly labels every bar with its exact percentage and average annual deals  
-4. Anchors the narrative with a clear mean-change reference line  
 
 # Original Visualisation
 ![Original Visualization](images/original.png)
@@ -93,23 +87,6 @@ We set out to reconstruct and enhance this chart in R, creating a **publication-
 ---
 
 # Implementation for the Bar Graph
-
-### Data Sources  
-- **Weekly population counts by planning area**  
-  Obtained from the Singapore Department of Statistics.  
-  - Each record includes: week identifier, planning area name, total population, and age-group breakdowns.  
-
-- **Planning-area boundaries (Master Plan 2019)**  
-  Downloaded as a KML from the Urban Redevelopment Authority (URA).  
-  - Provides precise polygons for all 55 planning areas.  
-
----
-
-### Software  
-- **dplyr** — data manipulation (filtering, grouping, summarizing)  
-- **sf** — import and handle spatial (KML) data as simple features  
-- **leaflet** — render interactive choropleth maps in R  
-- **shiny** — build an interactive web dashboard for exploration  
 
 # Improved visualisation
 ![Improved Visualization](images/Improved Visualisation.png)

@@ -415,14 +415,7 @@
 
 = Introduction
 <introduction>
-The Singapore public-housing market has undergone pronounced shifts from 2020 to 2024, driven by demographic trends such as population ageing, household "rightsizing," and policy changes like the rollout of the 2-Room Flexi Scheme. Our project builds on a Straits Times graphic (STRAITS TIMES GRAPHICS, 2025) that maps the #strong[percentage change in HDB resale prices by flat type] over this period. While that original visualization adeptly highlights the surge in small-flat prices, it omits context on transaction volumes, orders categories counter-intuitively, and relies on a uniform grey palette (with minimal accenting) that obscures meaningful above-/below-average patterns.
-
-We set out to reconstruct and enhance this chart in R, creating a #strong[publication-ready bar chart] that:
-
-+ Orders flat types by descending price growth \
-+ Uses a diverging/single-accent palette to spotlight key deviations from the mean \
-+ Directly labels every bar with its exact percentage and average annual deals \
-+ Anchors the narrative with a clear mean-change reference line
+The Singapore public-housing market has undergone pronounced shifts from 2020 to 2024, driven by demographic trends such as population ageing, household "rightsizing," and policy changes like the rollout of the 2-Room Flexi Scheme. Our project builds on a Straits Times graphic (STRAITS TIMES GRAPHICS, 2025) that maps the #strong[percentage change in HDB resale prices by flat type] over this period. Figure 1 illustrates the percentage change in resale prices by flat type—from 2020 to 2024—using data sourced from Data.gov.sg and Orangetee & Tie Research & Analytics. By comparing growth across 1‑room through Multi‑generation flats, this visualization highlights which segments have seen the strongest appreciation. We can build on this static snapshot by adding interactive filters, time-based x-axis and integrating transaction prices to deepen our insights into housing‑type–specific trends.
 
 = Original Visualisation
 <original-visualisation>
@@ -483,67 +476,58 @@ supplement: "Figure",
 
 = Suggested Improvements
 <suggested-improvements>
-+ #strong[Descending Bar Order] \
-  Reorder flat types by `pct_change` so the largest growth tops the chart.
+- #strong[Show Temporal Trends Directly] \
+  Replace the static bar‐chart snapshot with a multi‑line chart of median resale price by flat type, so viewers can see year‑to‑year trajectories.
 
-+ #strong[Single-Accent Highlight] \
-  Render all bars in light grey, with #strong[2-ROOM] in a bold red—drawing immediate attention to the strongest gainer.
+- #strong[Endpoint Labeling] \
+  Annotate each line at the 2024 end‑point with both the absolute median price and the total percent change since 2020, for immediate take‑aways.
 
-+ #strong[Diverging Palette (Optional)] \
-  For a richer narrative, use a blue–grey–red gradient centered at the mean change (\~39%) to show who outperformed or underperformed.
+- #strong[Color‑Blind–Friendly Palette] \
+  Use the Okabe–Ito (CUD) palette to ensure all seven flat‑type lines remain distinguishable to viewers with color‑vision deficiencies.
 
-+ #strong[Direct Labels & Consistent Placement] \
-  Place every `% change` label to the right of its bar, with a consistent nudge (e.g.~2 pts) and uniform font & color, avoiding overlap.
+- #strong[Currency Formatting] \
+  Format the y‑axis tick labels as "\$300 K", "\$400 K", etc., to reinforce the S\$ scale and reduce cognitive load.
 
-+ #strong[Annotate Average Annual Deals] \
-  Show "Avg deals: XXX" beneath each bar in muted grey, so readers immediately gauge sample robustness.
+- #strong[Interactive Hover Tooltips] \
+  In a dashboard context, enable hover tooltips that display the exact median price and transaction volume for any flat type in any year.
 
-+ #strong[Mean Reference Line] \
-  Add a dashed vertical line at the overall mean % change, with its value stated in the subtitle for clarity.
-
-+ #strong[Academic Typography & Alignment] \
-  Left-justify the title, subtitle, and caption using `plot.title.position = "plot"` and `hjust = 0`, adopt sentence case, and set a clear size hierarchy.
+- #strong[Legend Placement & Sizing] \
+  Move the legend below the chart, expand its marker size and line samples to improve readability in a poster format.
 
 #horizontalrule
 
 = Implementation for the Bar Graph
 <implementation-for-the-bar-graph>
-=== Data Sources
-<data-sources>
-- #strong[Weekly population counts by planning area] \
-  Obtained from the Singapore Department of Statistics.
-  - Each record includes: week identifier, planning area name, total population, and age-group breakdowns.
-- #strong[Planning-area boundaries (Master Plan 2019)] \
-  Downloaded as a KML from the Urban Redevelopment Authority (URA).
-  - Provides precise polygons for all 55 planning areas.
-
-#horizontalrule
-
-=== Software
-<software>
-- #strong[dplyr] — data manipulation (filtering, grouping, summarizing) \
-- #strong[sf] — import and handle spatial (KML) data as simple features \
-- #strong[leaflet] — render interactive choropleth maps in R \
-- #strong[shiny] — build an interactive web dashboard for exploration
-
 = Improved visualisation
 <improved-visualisation>
-#box(image("images/Improved Visualisation.png")) 1. #emph[Improved Temporal Granularity] \
+#box(image("images/Improved Visualisation.png")) 1. #emph[Temporal Clarity] \
 Plotting x axis with years grants temporal granularity and insights to specific year.
 
 #block[
 #set enum(numbering: "1.", start: 2)
-+ #emph[No Geographic Context] \
-  Performance may vary by estate or region; this chart treats all transactions as homogeneous. -we dont answer this (chloroplerth map)
++ #emph[Endpoint Annotations] \
+  At 2024, each line is labeled with its percent increase (e.g., "\+47.8 %" for 3‑Room), eliminating the need for a separate legend lookup.
 
-+ #emph[Missing Transaction Volume] \
-  Percentage change alone masks the underlying trade volume, which influences interpretation. -We dont answer this
++ #emph[Clean Axes & Gridlinese] \
+  The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
 
-+ #emph[Accessibility Concerns Addressed] \
-  Better contrast: Utilize high-contrast colors to improve accessibility for users with visual-impairments, ensuring clarity and ease of interpretation for all users. One such example is the use of Color Universal Design (CUD) colors which are designed to be distinguishable by all users, including those with color vision deficiencies. (Okabe and Ito 2008).
++ #emph[Accessible Colors] The enhanced plot is a multi‑line chart of #strong[Median HDB Resale Price by Flat Type (2020–2024)];. Each of the seven lines uses a distinct CUD color:
+]
 
+- 1‑Room (Sky Blue) \
+- 2‑Room (Vermilion) \
+- 3‑Room (Bluish Green) \
+- 4‑Room (Reddish Purple) \
+- 5‑Room (Orange) \
+- Executive (Yellow) \
+- Multi‑Generation (Blue)
+
+#block[
+#set enum(numbering: "1.", start: 5)
 + #emph[Variety Colors] \
   Added a variety of color palettes to increase readability and improve visual appeal.
+
++ #emph[Improved Legend] Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
 ]
 
 = Further suggestions for interactivity
