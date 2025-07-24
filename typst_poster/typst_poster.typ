@@ -458,19 +458,21 @@ supplement: "Figure",
 == Weaknesses
 <weaknesses>
 + #emph[Lack of Temporal Granularity] \
-  Aggregating from 2020–2024 hides year‑by‑year or quarter‑by‑quarter volatility.
+  This chart only shows the aggregate 2020–2024 change. You can’t see when prices accelerated or cooled.
 
-+ #emph[No Geographic Context] \
-  Performance may vary by estate or region; this chart treats all transactions as homogeneous.
++ #emph[Legend Dependency for Value Lookup] \
+  While exact percentages are labelled on the bars, the use of blue vs.~grey to "highlight" the top two segments has no accompanying legend or call‑out explaining #emph[why] those two are special.
 
-+ #emph[Missing Transaction Volume] \
-  Percentage change alone masks the underlying trade volume, which influences interpretation.
++ #emph[Cluttered Axes and Distracting Gridlines] The vertical gridlines are fairly prominent and, together with the zero‐line baseline, compete visually with the bars themselves.
 
 + #emph[Accessibility Concerns] \
-  The blue/grey palette may challenge viewers with color‑vision deficiencies; no alternative encoding is provided.
+  The grey vs.~blue contrast may be hard to distinguish for viewers with deuteranopia/protanopia. (No alternative texture or pattern is provided.)
 
-+ #emph[Bland Colors] \
-  Only two color palettes being grey and blue which makes the graph look extremely bland.
++ #emph[Monotonous Color Schemes] \
+  Aside from the two blue bars, all other categories use nearly identical greys, which makes it hard to pick out any mid‑ranked categories if you weren’t reading the labels.
+
++ #emph[Inefficient Legend Placement and Size] \
+  There is no legend for interpreting the colour‐highlighting rule, and the source credits at the bottom bear a similar style weight to the chart itself, drawing attention away from the data.
 
 #horizontalrule
 
