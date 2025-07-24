@@ -47,22 +47,22 @@ The Singapore public-housing market has undergone pronounced shifts from 2020 to
    
 ## Weaknesses
 
-1. *Lack of Temporal Granularity*  
+1. **Lack of Temporal Granularity**  
   This chart only shows the aggregate 2020–2024 change. You can’t see when prices accelerated or cooled.
 
-2. *Legend Dependency for Value Lookup*  
+2. **Legend Dependency for Value Lookup**  
   While exact percentages are labelled on the bars, the use of blue vs. grey to “highlight” the top two segments has no accompanying legend or call‑out explaining _why_ those two are special.
    
-3. *Cluttered Axes and Distracting Gridlines* 
+3. **Cluttered Axes and Distracting Gridlines** 
   The vertical gridlines are fairly prominent and, together with the zero‐line baseline, compete visually with the bars themselves.
    
-4. *Accessibility Concerns*  
+4. **Accessibility Concerns**  
   The grey vs. blue contrast may be hard to distinguish for viewers with deuteranopia/protanopia. (No alternative texture or pattern is provided.)
 
-5. *Monotonous Color Schemes*  
+5. **Monotonous Color Schemes**  
   Aside from the two blue bars, all other categories use nearly identical greys, which makes it hard to pick out any mid‑ranked categories if you weren’t reading the labels.
    
-6. *Inefficient Legend Placement and Size*  
+6. **Inefficient Legend Placement and Size**  
   There is no legend for interpreting the colour‐highlighting rule, and the source credits at the bottom bear a similar style weight to the chart itself, drawing attention away from the data.
    
 
@@ -70,23 +70,25 @@ The Singapore public-housing market has undergone pronounced shifts from 2020 to
 
 # Suggested Improvements
 
-- **Show Temporal Trends Directly**  
-  Replace the static bar‐chart snapshot with a multi‑line chart of median resale price by flat type, so viewers can see year‑to‑year trajectories.
+1. **Temporal Clarity**  
+   Plotting x axis with years grants temporal granularity and insights to specific year.
 
-- **Endpoint Labeling**  
-  Annotate each line at the 2024 end‑point with both the absolute median price and the total percent change since 2020, for immediate take‑aways.
+2. **Endpoint Annotations**  
+   At 2024, each line is labeled with its percent increase (e.g., “+47.8 %” for 3‑Room), eliminating the need for a separate legend lookup.
 
-- **Color‑Blind–Friendly Palette**  
-  Use the Okabe–Ito (CUD) palette to ensure all seven flat‑type lines remain distinguishable to viewers with color‑vision deficiencies.
+3. **Clean Axes & Gridlinese**  
+   The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
 
-- **Currency Formatting**  
-  Format the y‑axis tick labels as “\$300 K”, “\$400 K”, etc., to reinforce the S\$ scale and reduce cognitive load.
+4. **Accessible Colors** 
+The enhanced plot is a multi‑line chart of **Median HDB Resale Price by Flat Type (2020–2024)**. Each of the seven lines uses a distinct CUD color:
+1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
 
-- **Interactive Hover Tooltips**  
-  In a dashboard context, enable hover tooltips that display the exact median price and transaction volume for any flat type in any year.
+5. **Variety Colors**  
+   Added a variety of color palettes to increase readability and improve visual appeal.
 
-- **Legend Placement & Sizing**  
-  Move the legend below the chart, expand its marker size and line samples to improve readability in a poster format.
+6. **Improved Legend**
+  Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
+
 
 ---
 
@@ -104,32 +106,9 @@ plotly package was used for building the interactive web-based visualization.
 
 # Improved visualisation
 ![Improved Visualization](images/Improved Visualisation.png)
-1. *Temporal Clarity*  
-   Plotting x axis with years grants temporal granularity and insights to specific year.
-
-2. *Endpoint Annotations*  
-   At 2024, each line is labeled with its percent increase (e.g., “+47.8 %” for 3‑Room), eliminating the need for a separate legend lookup.
-
-3. *Clean Axes & Gridlinese*  
-   The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
-
-
-4. *Accessible Colors* 
-    The enhanced plot is a multi‑line chart of **Median HDB Resale Price by Flat Type (2020–2024)**. Each of the seven lines uses a distinct CUD color:
-1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
-
-5. *Variety Colors*  
-   Added a variety of color palettes to increase readability and improve visual appeal.
-
-6. *Improved Legend*
-   Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
-
-
-# Further suggestions for interactivity
-
 
 # Conclusion
-
+The enhanced multi‑line chart reveals that while Multi‑generation flats command the highest absolute resale values—surpassing S\$1 000 000 by 2024—it is the compact 2‑room units that appreciated the fastest (+47.8%), followed by 1‑room (+42%) and 3‑room flats (+39.9%). All flat types exhibited steady year‑on‑year growth, but percentage gains taper as unit size increases. These clear, accessible trends underscore robust demand for smaller, more affordable flats and equip policymakers and market participants with targeted insights into Singapore’s evolving HDB resale landscape.  
 
 # References
 

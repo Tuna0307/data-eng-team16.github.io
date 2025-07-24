@@ -457,44 +457,42 @@ supplement: "Figure",
 
 == Weaknesses
 <weaknesses>
-+ #emph[Lack of Temporal Granularity] \
++ #strong[Lack of Temporal Granularity] \
   This chart only shows the aggregate 2020–2024 change. You can’t see when prices accelerated or cooled.
 
-+ #emph[Legend Dependency for Value Lookup] \
++ #strong[Legend Dependency for Value Lookup] \
   While exact percentages are labelled on the bars, the use of blue vs.~grey to "highlight" the top two segments has no accompanying legend or call‑out explaining #emph[why] those two are special.
 
-+ #emph[Cluttered Axes and Distracting Gridlines] The vertical gridlines are fairly prominent and, together with the zero‐line baseline, compete visually with the bars themselves.
++ #strong[Cluttered Axes and Distracting Gridlines] The vertical gridlines are fairly prominent and, together with the zero‐line baseline, compete visually with the bars themselves.
 
-+ #emph[Accessibility Concerns] \
++ #strong[Accessibility Concerns] \
   The grey vs.~blue contrast may be hard to distinguish for viewers with deuteranopia/protanopia. (No alternative texture or pattern is provided.)
 
-+ #emph[Monotonous Color Schemes] \
++ #strong[Monotonous Color Schemes] \
   Aside from the two blue bars, all other categories use nearly identical greys, which makes it hard to pick out any mid‑ranked categories if you weren’t reading the labels.
 
-+ #emph[Inefficient Legend Placement and Size] \
++ #strong[Inefficient Legend Placement and Size] \
   There is no legend for interpreting the colour‐highlighting rule, and the source credits at the bottom bear a similar style weight to the chart itself, drawing attention away from the data.
 
 #horizontalrule
 
 = Suggested Improvements
 <suggested-improvements>
-- #strong[Show Temporal Trends Directly] \
-  Replace the static bar‐chart snapshot with a multi‑line chart of median resale price by flat type, so viewers can see year‑to‑year trajectories.
++ #strong[Temporal Clarity] \
+  Plotting x axis with years grants temporal granularity and insights to specific year.
 
-- #strong[Endpoint Labeling] \
-  Annotate each line at the 2024 end‑point with both the absolute median price and the total percent change since 2020, for immediate take‑aways.
++ #strong[Endpoint Annotations] \
+  At 2024, each line is labeled with its percent increase (e.g., "\+47.8 %" for 3‑Room), eliminating the need for a separate legend lookup.
 
-- #strong[Color‑Blind–Friendly Palette] \
-  Use the Okabe–Ito (CUD) palette to ensure all seven flat‑type lines remain distinguishable to viewers with color‑vision deficiencies.
++ #strong[Clean Axes & Gridlinese] \
+  The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
 
-- #strong[Currency Formatting] \
-  Format the y‑axis tick labels as "\$300 K", "\$400 K", etc., to reinforce the S\$ scale and reduce cognitive load.
++ #strong[Accessible Colors] The enhanced plot is a multi‑line chart of #strong[Median HDB Resale Price by Flat Type (2020–2024)];. Each of the seven lines uses a distinct CUD color: 1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
 
-- #strong[Interactive Hover Tooltips] \
-  In a dashboard context, enable hover tooltips that display the exact median price and transaction volume for any flat type in any year.
++ #strong[Variety Colors] \
+  Added a variety of color palettes to increase readability and improve visual appeal.
 
-- #strong[Legend Placement & Sizing] \
-  Move the legend below the chart, expand its marker size and line samples to improve readability in a poster format.
++ #strong[Improved Legend] Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
 
 #horizontalrule
 
@@ -510,29 +508,22 @@ tidyverse package was used for data manipulation and cleaning. lubridate package
 
 = Improved visualisation
 <improved-visualisation>
-#box(image("images/Improved Visualisation.png")) 1. #emph[Temporal Clarity] \
-Plotting x axis with years grants temporal granularity and insights to specific year.
+#figure([
+#box(image("images/Improved Visualisation.png"))
+], caption: figure.caption(
+position: bottom, 
+[
+Improved Visualization
+]), 
+kind: "quarto-float-fig", 
+supplement: "Figure", 
+)
 
-#block[
-#set enum(numbering: "1.", start: 2)
-+ #emph[Endpoint Annotations] \
-  At 2024, each line is labeled with its percent increase (e.g., "\+47.8 %" for 3‑Room), eliminating the need for a separate legend lookup.
 
-+ #emph[Clean Axes & Gridlinese] \
-  The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
-
-+ #emph[Accessible Colors] The enhanced plot is a multi‑line chart of #strong[Median HDB Resale Price by Flat Type (2020–2024)];. Each of the seven lines uses a distinct CUD color: 1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
-
-+ #emph[Variety Colors] \
-  Added a variety of color palettes to increase readability and improve visual appeal.
-
-+ #emph[Improved Legend] Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
-]
-
-= Further suggestions for interactivity
-<further-suggestions-for-interactivity>
 = Conclusion
 <conclusion>
+The enhanced multi‑line chart reveals that while Multi‑generation flats command the highest absolute resale values—surpassing S\$1 000 000 by 2024—it is the compact 2‑room units that appreciated the fastest (+47.8%), followed by 1‑room (+42%) and 3‑room flats (+39.9%). All flat types exhibited steady year‑on‑year growth, but percentage gains taper as unit size increases. These clear, accessible trends underscore robust demand for smaller, more affordable flats and equip policymakers and market participants with targeted insights into Singapore’s evolving HDB resale landscape.
+
 = References
 <references>
 - #link("https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats")[STRAITS TIMES GRAPHICS. (2025, May 20). Older buyers, smaller households among factors driving demand for smaller flats \[Bar chart\]. The Straits Times.]
