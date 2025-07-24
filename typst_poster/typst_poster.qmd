@@ -13,3 +13,71 @@ format:
     footer-color: "ebcfb2"
 ---
 
+# Introduction
+
+The Singapore public-housing market has undergone pronounced shifts from 2020 to 2024, driven by demographic trends such as population ageing, household “rightsizing,” and policy changes like the rollout of the 2-Room Flexi Scheme. Our project builds on a Straits Times graphic (STRAITS TIMES GRAPHICS, 2025) that maps the **percentage change in HDB resale prices by flat type** over this period. While that original visualization adeptly highlights the surge in small-flat prices, it omits context on transaction volumes, orders categories counter-intuitively, and relies on a uniform grey palette (with minimal accenting) that obscures meaningful above-/below-average patterns.
+
+We set out to reconstruct and enhance this chart in R, creating a **publication-ready bar chart** that:
+1. Orders flat types by descending price growth  
+2. Uses a diverging/single-accent palette to spotlight key deviations from the mean  
+3. Directly labels every bar with its exact percentage and average annual deals  
+4. Anchors the narrative with a clear mean-change reference line  
+
+# Original Visualisation
+[Original Visualisation](images/original.png)
+
+# Critical Assessment of the Original Visualization
+
+1. **Unordered Categories**  
+   Flat types appear in an arbitrary sequence, forcing readers to search for the top and bottom performers rather than seeing them at a glance.
+
+2. **Uniform Grey Bars**  
+   Except for two blue bars, all categories share the same grey, making it hard to discern above- vs. below-average growth.
+
+3. **Lack of Volume Context**  
+   Percentage changes can be misleading when based on very few transactions (e.g. 1-Room). No indication of deal counts appears.
+
+4. **Clipped & Inconsistent Labels**  
+   Some annotations overlap the mean-line or the frame, and small-change bars carry labels that are too close to the axis cut-off.
+
+5. **Static, Print-Focused**  
+   No interactive features to reveal exact values, drill into regional breakdowns, or display uncertainty around medians.
+
+---
+
+# Suggested Improvements
+
+1. **Descending Bar Order**  
+   Reorder flat types by `pct_change` so the largest growth tops the chart.
+
+2. **Single-Accent Highlight**  
+   Render all bars in light grey, with **2-ROOM** in a bold red—drawing immediate attention to the strongest gainer.
+
+3. **Diverging Palette (Optional)**  
+   For a richer narrative, use a blue–grey–red gradient centered at the mean change (~39%) to show who outperformed or underperformed.
+
+4. **Direct Labels & Consistent Placement**  
+   Place every `% change` label to the right of its bar, with a consistent nudge (e.g. 2 pts) and uniform font & color, avoiding overlap.
+
+5. **Annotate Average Annual Deals**  
+   Show “Avg deals: XXX” beneath each bar in muted grey, so readers immediately gauge sample robustness.
+
+6. **Mean Reference Line**  
+   Add a dashed vertical line at the overall mean % change, with its value stated in the subtitle for clarity.
+
+7. **Academic Typography & Alignment**  
+   Left-justify the title, subtitle, and caption using `plot.title.position = "plot"` and `hjust = 0`, adopt sentence case, and set a clear size hierarchy.
+
+---
+
+# Implementation for the Bar Graph
+
+Below is a streamlined outline of the R workflow. Full code is in the accompanying `.qmd` file.
+
+## 1. Setup and Load Data
+
+```r
+library(tidyverse)
+library(scales)
+
+df_raw <- read_csv("data_output/summary_by_type_year.csv")

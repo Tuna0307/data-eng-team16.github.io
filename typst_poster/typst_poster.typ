@@ -4,7 +4,9 @@
   #block(inset: (left: 1.5em, top: 0.2em, bottom: 0.2em))[#body]
 ]
 
-#let horizontalrule = line(start: (25%,0%), end: (75%,0%))
+#let horizontalrule = [
+  #line(start: (25%,0%), end: (75%,0%))
+]
 
 #let endnote(num, contents) = [
   #stack(dir: ltr, spacing: 3pt, super[#num], contents)
@@ -35,17 +37,17 @@
   if fields.at("below", default: none) != none {
     // TODO: this is a hack because below is a "synthesized element"
     // according to the experts in the typst discord...
-    fields.below = fields.below.abs
+    fields.below = fields.below.amount
   }
   return block.with(..fields)(new_content)
 }
 
 #let empty(v) = {
-  if type(v) == str {
+  if type(v) == "string" {
     // two dollar signs here because we're technically inside
     // a Pandoc template :grimace:
     v.matches(regex("^\\s*$")).at(0, default: none) != none
-  } else if type(v) == content {
+  } else if type(v) == "content" {
     if v.at("text", default: none) != none {
       return empty(v.text)
     }
@@ -108,7 +110,7 @@
 // callout rendering
 // this is a figure show rule because callouts are crossreferenceable
 #show figure: it => {
-  if type(it.kind) != str {
+  if type(it.kind) != "string" {
     return it
   }
   let kind_match = it.kind.matches(regex("^quarto-callout-(.*)")).at(0, default: none)
@@ -145,7 +147,7 @@
 }
 
 // 2023-10-09: #fa-icon("fa-info") is not working, so we'll eval "#fa-info()" instead
-#let callout(body: [], title: "Callout", background_color: rgb("#dddddd"), icon: none, icon_color: black, body_background_color: white) = {
+#let callout(body: [], title: "Callout", background_color: rgb("#dddddd"), icon: none, icon_color: black) = {
   block(
     breakable: false, 
     fill: background_color, 
@@ -164,7 +166,7 @@
         block(
           inset: 1pt, 
           width: 100%, 
-          block(fill: body_background_color, width: 100%, inset: 8pt, body))
+          block(fill: white, width: 100%, inset: 8pt, body))
       }
     )
 }
@@ -434,8 +436,69 @@
   doc,
 )
 
+= Introduction
+<introduction>
+The Singapore public-housing market has undergone pronounced shifts from 2020 to 2024, driven by demographic trends such as population ageing, household "rightsizing," and policy changes like the rollout of the 2-Room Flexi Scheme. Our project builds on a Straits Times graphic (STRAITS TIMES GRAPHICS, 2025) that maps the #strong[percentage change in HDB resale prices by flat type] over this period. While that original visualization adeptly highlights the surge in small-flat prices, it omits context on transaction volumes, orders categories counter-intuitively, and relies on a uniform grey palette (with minimal accenting) that obscures meaningful above-/below-average patterns.
 
+We set out to reconstruct and enhance this chart in R, creating a #strong[publication-ready bar chart] that: 1. Orders flat types by descending price growth \
+2. Uses a diverging/single-accent palette to spotlight key deviations from the mean \
+3. Directly labels every bar with its exact percentage and average annual deals \
+4. Anchors the narrative with a clear mean-change reference line
 
+= Original Visualisation
+<original-visualisation>
+#link("images/original.png")[Original Visualisation]
 
+= Critical Assessment of the Original Visualization
+<critical-assessment-of-the-original-visualization>
++ #strong[Unordered Categories] \
+  Flat types appear in an arbitrary sequence, forcing readers to search for the top and bottom performers rather than seeing them at a glance.
 
++ #strong[Uniform Grey Bars] \
+  Except for two blue bars, all categories share the same grey, making it hard to discern above- vs.~below-average growth.
 
++ #strong[Lack of Volume Context] \
+  Percentage changes can be misleading when based on very few transactions (e.g.~1-Room). No indication of deal counts appears.
+
++ #strong[Clipped & Inconsistent Labels] \
+  Some annotations overlap the mean-line or the frame, and small-change bars carry labels that are too close to the axis cut-off.
+
++ #strong[Static, Print-Focused] \
+  No interactive features to reveal exact values, drill into regional breakdowns, or display uncertainty around medians.
+
+#horizontalrule
+
+= Suggested Improvements
+<suggested-improvements>
++ #strong[Descending Bar Order] \
+  Reorder flat types by `pct_change` so the largest growth tops the chart.
+
++ #strong[Single-Accent Highlight] \
+  Render all bars in light grey, with #strong[2-ROOM] in a bold red—drawing immediate attention to the strongest gainer.
+
++ #strong[Diverging Palette (Optional)] \
+  For a richer narrative, use a blue–grey–red gradient centered at the mean change (\~39%) to show who outperformed or underperformed.
+
++ #strong[Direct Labels & Consistent Placement] \
+  Place every `% change` label to the right of its bar, with a consistent nudge (e.g.~2 pts) and uniform font & color, avoiding overlap.
+
++ #strong[Annotate Average Annual Deals] \
+  Show "Avg deals: XXX" beneath each bar in muted grey, so readers immediately gauge sample robustness.
+
++ #strong[Mean Reference Line] \
+  Add a dashed vertical line at the overall mean % change, with its value stated in the subtitle for clarity.
+
++ #strong[Academic Typography & Alignment] \
+  Left-justify the title, subtitle, and caption using `plot.title.position = "plot"` and `hjust = 0`, adopt sentence case, and set a clear size hierarchy.
+
+#horizontalrule
+
+= Implementation for the Bar Graph
+<implementation-for-the-bar-graph>
+Below is a streamlined outline of the R workflow. Full code is in the accompanying `.qmd` file.
+
+== 1. Setup and Load Data
+<setup-and-load-data>
+\`\`\`r library(tidyverse) library(scales)
+
+df\_raw \<- read\_csv("data\_output/summary\_by\_type\_year.csv")
