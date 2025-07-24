@@ -18,6 +18,7 @@ format:
 The Singapore public-housing market has undergone pronounced shifts from 2020 to 2024, driven by demographic trends such as population ageing, household “rightsizing,” and policy changes like the rollout of the 2-Room Flexi Scheme. Our project builds on a Straits Times graphic (STRAITS TIMES GRAPHICS, 2025) that maps the **percentage change in HDB resale prices by flat type** over this period. While that original visualization adeptly highlights the surge in small-flat prices, it omits context on transaction volumes, orders categories counter-intuitively, and relies on a uniform grey palette (with minimal accenting) that obscures meaningful above-/below-average patterns.
 
 We set out to reconstruct and enhance this chart in R, creating a **publication-ready bar chart** that:
+
 1. Orders flat types by descending price growth  
 2. Uses a diverging/single-accent palette to spotlight key deviations from the mean  
 3. Directly labels every bar with its exact percentage and average annual deals  
@@ -64,8 +65,8 @@ We set out to reconstruct and enhance this chart in R, creating a **publication-
 4. *Accessibility Concerns*  
    The blue/grey palette may challenge viewers with color‑vision deficiencies; no alternative encoding is provided.
 
-5. *Unexplained Highlight Choice*  
-   Only two categories are colored blue—there is no in‑chart legend explaining why.
+5. *Bland Colors*  
+   Only two color palettes being grey and blue which makes the graph look extremely bland.
 
 ---
 
@@ -114,10 +115,27 @@ We set out to reconstruct and enhance this chart in R, creating a **publication-
 - **shiny** — build an interactive web dashboard for exploration  
 
 # Improved visualisation
+![Improved Visualization](images/Improved Visualisation.png)
+1. *Improved Temporal Granularity*  
+   Plotting x axis with years grants temporal granularity and insights to specific year.
+
+2. *No Geographic Context*  
+   Performance may vary by estate or region; this chart treats all transactions as homogeneous.
+
+3. *Missing Transaction Volume*  
+   Percentage change alone masks the underlying trade volume, which influences interpretation.
+
+4. *Accessibility Concerns Addressed*  
+    Better contrast: Utilize high-contrast colors to improve accessibility for users with visual-impairments, ensuring clarity and ease of interpretation for all users. One such example is the use of Color Universal Design (CUD) colors which are designed to be distinguishable by all users, including those with color vision deficiencies. (Okabe and Ito 2008).
+
+5. *Variety Colors*  
+   Added a variety of color palettes to increase readability and improve visual appeal.
+
 
 # Further suggestions for interactivity
 
 
+# Conclusion
 
 
 # References
