@@ -140,312 +140,100 @@ ggplot(price_change_summary,
 
 ------------------------------------------------------------------------
 
-### **4. Enhanced Visualizations: Uncovering Deeper Insights**
+### **4. Enhanced Visualizations**
 
-The original charts are simple bar charts. We can create far more insightful and visually appealing charts by exploring distributions, trends over time, and spatial patterns in the data.
+The original charts are simple bar charts. We can create far more insightful and visually appealing charts
 
-#### **Enhancement 1: Modern Price Distribution by Flat Type**
+```{r}
+# --- Enhanced Chart 1 (Final Version): Warning-Free and Correct ---
 
-A ridgeline plot shows the full range of prices, not just a single number. This reveals the significant overlap in prices between different flat types.
-
-```{r enhanced_viz_distribution, message=FALSE, warning=FALSE}
-if (!require("ggridges")) {
-  install.packages("ggridges")
-}
-library(ggridges)
-
-# --- CORRECTED CODE ---
-# Prepare data with a clean label for plotting
-plot_data <- project_data %>%
-  filter(flat_type %in% c("2 ROOM", "3 ROOM", "4 ROOM", "5 ROOM", "EXECUTIVE")) %>%
-  mutate(
-    # Create the clean label (e.g., "2 ROOM" -> "2-Room")
-    flat_type_label = str_replace(flat_type, " ROOM", "-room") %>% str_to_title()
-  )
-
-# This ggplot call will now work correctly because `flat_type_label` exists
-ggplot(plot_data, aes(x = resale_price, y = fct_rev(flat_type_label), fill = flat_type_label)) +
-  geom_density_ridges(alpha = 0.8, scale = 1.5) +
-  scale_x_continuous(labels = scales::dollar_format(scale = 1e-3, suffix = "k")) +
-  labs(
-    title = "Improved Viz: Price Distribution Varies Significantly by Flat Type",
-    subtitle = "Distribution of HDB resale prices from 2020-2024. Note the wide overlap.",
-    x = "Resale Price (S$)",
-    y = NULL,
-    caption = "Source: Team 16 Analysis of data.gov.sg"
-  ) +
-  theme_minimal(base_size = 14) +
-  theme(legend.position = "none", plot.title.position = "plot") 
-```
-
-#### **Enhancement 2: Price Trends Over Time by Flat Type**
-
-A time series plot showing how prices evolved monthly, with smooth trend lines and confidence intervals.
-
-```{r enhanced_viz_trends, message=FALSE, warning=FALSE}
-# Prepare monthly trend data
-monthly_trends <- project_data %>%
-  filter(flat_type %in% c("2 ROOM", "3 ROOM", "4 ROOM", "5 ROOM", "EXECUTIVE")) %>%
-  mutate(
-    flat_type_label = str_replace(flat_type, " ROOM", "-Room") %>% str_to_title(),
-    year_month = floor_date(month, "month")
-  ) %>%
-  group_by(year_month, flat_type_label) %>%
-  summarise(
-    median_price = median(resale_price, na.rm = TRUE),
-    q25 = quantile(resale_price, 0.25, na.rm = TRUE),
-    q75 = quantile(resale_price, 0.75, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-# Create an elegant time series plot
-ggplot(monthly_trends, aes(x = year_month, y = median_price, color = flat_type_label, fill = flat_type_label)) +
-  geom_ribbon(aes(ymin = q25, ymax = q75), alpha = 0.2, color = NA) +
-  geom_line(size = 1.2, alpha = 0.9) +
-  geom_point(size = 1.5, alpha = 0.8) +
-  scale_x_date(
-    date_labels = "%Y-%m",
-    date_breaks = "6 months",
-    expand = c(0.02, 0.02)
-  ) +
-  scale_y_continuous(
-    labels = scales::dollar_format(scale = 1e-3, suffix = "K"),
-    breaks = scales::pretty_breaks(n = 6)
-  ) +
-  scale_color_viridis_d(option = "plasma", begin = 0.1, end = 0.9) +
-  scale_fill_viridis_d(option = "plasma", begin = 0.1, end = 0.9) +
-  labs(
-    title = "HDB Resale Price Trends Over Time",
-    subtitle = "Monthly median prices with interquartile ranges (ribbons) showing market volatility",
-    x = "Year-Month",
-    y = "Median Resale Price (S$)",
-    color = "Flat Type",
-    fill = "Flat Type",
-    caption = "Source: Team 16 Analysis of data.gov.sg"
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(
-    plot.title.position = "plot",
-    plot.title = element_text(face = "bold", size = 16),
-    plot.subtitle = element_text(color = "grey40", size = 11),
-    legend.position = "bottom",
-    legend.title = element_text(face = "bold"),
-    panel.grid.minor = element_blank(),
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    plot.margin = margin(20, 20, 20, 20)
-  ) +
-  guides(
-    color = guide_legend(override.aes = list(size = 3)),
-    fill = guide_legend(override.aes = list(alpha = 0.3))
-  )
-```
-
-#### **Enhancement 3: Price per Sqm vs Storey Height Analysis**
-
-A modern scatter plot with trend lines and marginal distributions showing the relationship between floor height and price efficiency.
-
-```{r enhanced_viz_storey_analysis, message=FALSE, warning=FALSE}
-# Prepare data for storey analysis
-storey_analysis <- project_data %>%
-  filter(
-    flat_type %in% c("2 ROOM", "3 ROOM", "4 ROOM", "5 ROOM", "EXECUTIVE"),
-    storey_mid <= 50, # Remove extreme outliers
-    price_per_sqm > 0 & price_per_sqm < 15000 # Remove price outliers
-  ) %>%
-  mutate(
-    flat_type_label = str_replace(flat_type, " ROOM", "-Room") %>% str_to_title(),
-    storey_group = case_when(
-      storey_mid <= 5 ~ "Low (1-5)",
-      storey_mid <= 10 ~ "Mid-Low (6-10)",
-      storey_mid <= 15 ~ "Mid (11-15)",
-      storey_mid <= 20 ~ "Mid-High (16-20)",
-      TRUE ~ "High (21+)"
-    ),
-    storey_group = factor(storey_group, levels = c("Low (1-5)", "Mid-Low (6-10)", "Mid (11-15)", "Mid-High (16-20)", "High (21+)"))
-  )
-
-# Create an enhanced box plot for clearer trend analysis
-ggplot(storey_analysis, 
-       aes(x = storey_group, y = price_per_sqm, fill = storey_group)) +
-  geom_boxplot(alpha = 0.8, outlier.shape = NA) + # Hiding outliers for clarity
-  scale_y_continuous(
-    labels = scales::dollar_format(prefix = "S$"),
-    limits = quantile(storey_analysis$price_per_sqm, c(0.01, 0.99), na.rm = TRUE) # Zoom in
-  ) +
-  scale_fill_viridis_d(option = "cividis", guide = "none") +
-  facet_wrap(~flat_type_label, scales = "free_y", ncol = 3) +
-  labs(
-    title = "Price per Sqm Distribution by Storey Height",
-    subtitle = "Box plots clearly show increasing price efficiency with height, faceted by flat type",
-    x = "Storey Group",
-    y = "Price per Square Meter (S$)",
-    caption = "Source: Team 16 Analysis of data.gov.sg"
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    plot.title.position = "plot",
-    plot.title = element_text(face = "bold", size = 16),
-    plot.subtitle = element_text(color = "grey40", size = 11),
-    panel.grid.minor = element_blank(),
-    strip.text = element_text(face = "bold", size = 11),
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    plot.margin = margin(20, 20, 20, 20)
-  )
-```
-
-#### **Enhancement 4: Interactive Town-wise Price Comparison**
-
-A modern horizontal bar chart showing median prices by town, with interactive tooltips when rendered in HTML.
-
-```{r enhanced_viz_towns, message=FALSE, warning=FALSE}
-# Prepare town-wise analysis
-town_analysis <- project_data %>%
-  group_by(town) %>%
-  summarise(
-    median_price = median(resale_price, na.rm = TRUE),
-    median_psm = median(price_per_sqm, na.rm = TRUE),
-    transaction_count = n(),
-    .groups = "drop"
-  ) %>%
-  filter(transaction_count >= 50) %>% # Only include towns with sufficient data
-  arrange(desc(median_price)) %>%
-  mutate(
-    town_rank = row_number(),
-    price_category = case_when(
-      median_price >= 600000 ~ "Premium (≥S$600K)",
-      median_price >= 450000 ~ "High (S$450K-600K)",
-      median_price >= 350000 ~ "Mid (S$350K-450K)",
-      TRUE ~ "Affordable (<S$350K)"
-    ),
-    price_category = factor(price_category, levels = c("Premium (≥S$600K)", "High (S$450K-600K)", "Mid (S$350K-450K)", "Affordable (<S$350K)"))
-  ) %>%
-  slice_head(n = 20) # Show top 20 towns
-
-# Step 1: Create the ggplot object with a 'text' aesthetic for the tooltip
-p_towns <- ggplot(town_analysis, 
-                  aes(x = median_price, y = fct_reorder(town, median_price), fill = price_category,
-                      # Define the custom tooltip content here
-                      text = paste("Town:", town, 
-                                   "\nMedian Price:", scales::dollar(median_price),
-                                   "\nMedian PSM:", scales::dollar(median_psm),
-                                   "\nTransactions:", transaction_count))) +
-  geom_col(alpha = 0.8, width = 0.7) +
-  scale_x_continuous(
-    labels = scales::dollar_format(scale = 1e-3, suffix = "K"),
-    expand = expansion(mult = c(0, 0.15)) # Make space for labels/tooltips
-  ) +
-  scale_fill_manual(values = c(
-    "Premium (≥S$600K)" = "#E31A1C",
-    "High (S$450K-600K)" = "#FF7F00", 
-    "Mid (S$350K-450K)" = "#1F78B4",
-    "Affordable (<S$350K)" = "#33A02C"
-  )) +
-  labs(
-    title = "Interactive Top 20 HDB Towns by Median Resale Price",
-    subtitle = "Ranked by median price (2020-2024). Hover on bars for details.",
-    x = "Median Resale Price (S$)",
-    y = NULL,
-    fill = "Price Category",
-    caption = "Source: Team 16 Analysis of data.gov.sg"
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(
-    plot.title.position = "plot",
-    plot.title = element_text(face = "bold", size = 16),
-    plot.subtitle = element_text(color = "grey40", size = 11),
-    legend.position = "bottom",
-    panel.grid.major.y = element_blank(),
-    axis.text.y = element_text(face = "bold"),
-    plot.margin = margin(20, 20, 20, 20)
-  )
-
-# Step 2: Convert the ggplot object to an interactive plotly chart
-plotly::ggplotly(p_towns, tooltip = "text")
-```
-
-#### **Enhancement 5: Comprehensive Market Overview Dashboard (using `patchwork`)**
-
-This multi-panel dashboard, built with the `patchwork` package, provides a powerful, at-a-glance summary of the HDB resale market, combining price trends, transaction volumes, and market share into a single, cohesive view.
-
-```{r enhanced_viz_dashboard, message=FALSE, warning=FALSE, fig.height=10, fig.width=14}
-# Prepare summary statistics for the dashboard
-summary_stats <- project_data %>%
-  filter(flat_type %in% c("2 ROOM", "3 ROOM", "4 ROOM", "5 ROOM", "EXECUTIVE")) %>%
-  mutate(flat_type_label = str_replace(flat_type, " ROOM", "-Room") %>% str_to_title()) %>%
-  group_by(flat_type_label, year) %>%
-  summarise(
-    median_price = median(resale_price, na.rm = TRUE),
-    median_psm = median(price_per_sqm, na.rm = TRUE),
-    transaction_count = n(),
-    .groups = "drop"
-  )
-
-# Panel 1: Price evolution by year
-p1 <- ggplot(summary_stats, aes(x = year, y = median_price, color = flat_type_label)) +
-  geom_line(size = 1.2, alpha = 0.9) +
-  geom_point(size = 2) +
-  scale_x_continuous(breaks = 2020:2024) +
-  scale_y_continuous(labels = scales::dollar_format(scale = 1e-3, suffix = "K")) +
-  scale_color_viridis_d(option = "plasma", begin = 0.1, end = 0.9) +
-  labs(title = "A. Price Evolution by Year", x = NULL, y = "Median Price", color = "Flat Type") +
-  theme_minimal(base_size = 12) +
-  theme(plot.title = element_text(face = "bold"), legend.title = element_text(face="bold"))
-
-# Panel 2: Transaction volume by year
-p2 <- ggplot(summary_stats, aes(x = year, y = transaction_count, fill = flat_type_label)) +
-  geom_col(position = "stack", alpha = 0.8) +
-  scale_x_continuous(breaks = 2020:2024) +
-  scale_y_continuous(labels = scales::comma) +
-  scale_fill_viridis_d(option = "plasma", begin = 0.1, end = 0.9) +
-  labs(title = "B. Transaction Volume by Year", x = NULL, y = "Transactions", fill = "Flat Type") +
-  theme_minimal(base_size = 12) +
-  theme(plot.title = element_text(face = "bold"), legend.title = element_text(face="bold"))
-
-# Panel 3: Price per sqm comparison
-p3 <- ggplot(summary_stats %>% filter(year %in% c(2020, 2024)), 
-             aes(x = fct_reorder(flat_type_label, median_psm), y = median_psm, fill = factor(year))) +
-  geom_col(position = "dodge", alpha = 0.8) +
-  scale_y_continuous(labels = scales::dollar_format(prefix = "S$")) +
-  scale_fill_manual(values = c("2020" = "#440154FF", "2024" = "#FDE725FF"), name = "Year") +
-  labs(title = "C. Price per Sqm: 2020 vs 2024", x = NULL, y = "Median PSM") +
-  theme_minimal(base_size = 12) +
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle=45, hjust=1), legend.title = element_text(face="bold"))
-
-# Panel 4: Market share by flat type in the last full year
-# We use 2023 for a full year's data, as 2024 is incomplete.
-market_share <- summary_stats %>%
-  group_by(year) %>%
-  mutate(market_share = transaction_count / sum(transaction_count)) %>%
+# 1. Prepare the summary data (no changes).
+summary_by_type_year <- project_data %>%
+  group_by(flat_type, year) %>%
+  summarise(median_price = median(resale_price, na.rm = TRUE)) %>%
   ungroup() %>%
-  filter(year == 2023)
+  mutate(flat_type = factor(flat_type)) %>%
+  arrange(flat_type, year)
 
-p4 <- ggplot(market_share, aes(x = "", y = market_share, fill = fct_reorder(flat_type_label, market_share))) +
-  geom_col(width = 1, alpha = 0.8) +
-  coord_polar("y", start = 0) +
-  geom_text(aes(label = scales::percent(market_share, accuracy = 1)), 
-            position = position_stack(vjust = 0.5), color = "white", fontface = "bold") +
-  scale_fill_viridis_d(option = "plasma", begin = 0.1, end = 0.9, guide="none") +
-  labs(title = "D. Market Share by Flat Type (2023)") +
-  theme_void(base_size = 12) +
-  theme(plot.title = element_text(face = "bold", hjust = 0.5))
+# 2. Compute the overall percent change (no changes).
+pct_change_df <- summary_by_type_year %>%
+  filter(year %in% c(2020, 2024)) %>%
+  pivot_wider(names_from = year, values_from = median_price, names_prefix = "yr_") %>%
+  mutate(pct_change = 100 * (yr_2024 / yr_2020 - 1)) %>%
+  select(flat_type, pct_change)
 
+# 3. Join the percentage change back to the data (no changes).
+plot_data <- summary_by_type_year %>%
+  left_join(pct_change_df, by = "flat_type")
 
-# --- FIX IS HERE ---
-# Combine all panels using patchwork.
-# We wrap the main plot composition in parentheses to ensure it's evaluated
-# fully before the `&` operator is applied. This resolves the precedence issue.
-(
-  (p1 + p2) / (p3 + p4) + 
-    plot_annotation(
-      title = 'HDB Resale Market Dashboard (2020-2024)',
-      subtitle = 'An overview of price evolution, transaction volumes, price efficiency, and market share.',
-      caption = 'Source: Team 16 Analysis of data.gov.sg',
-      theme = theme(
-        plot.title = element_text(face = "bold", size = 22, hjust = 0.5),
-        plot.subtitle = element_text(size = 14, hjust = 0.5, color="grey40"),
-        plot.caption = element_text(size=10, color="grey50")
-      )
-    )
-) & 
-  theme(legend.position = "bottom", legend.box = "horizontal")
+# 4. Define a color palette (no changes).
+flat_types <- levels(plot_data$flat_type)
+palette <- RColorBrewer::brewer.pal(n = length(flat_types), name = "Set2")
+
+# 5. Build the interactive plot.
+#    KEY CHANGE: Move `height = 550` into the main plot_ly() call.
+fig <- plot_ly(
+    data = plot_data,
+    x = ~year,
+    y = ~median_price,
+    color = ~flat_type,
+    colors = palette,
+    legendgroup = ~flat_type,
+    type = 'scatter',
+    mode = 'lines+markers',
+    name = ~flat_type,
+    customdata = ~pct_change,
+    hovertemplate = paste0(
+      "<b>%{fullData.name}</b><br>",
+      "Year %{x}: $%{y:,.0f}<br>",
+      "Total Change (2020-2024): %{customdata:.1f}%",
+      "<extra></extra>"
+    ),
+    height = 550 # Set height here
+  )
+
+# 6. Add the percentage labels as a separate text layer (no changes).
+fig <- fig %>% add_text(
+    data = filter(plot_data, year == 2024),
+    x = ~year,
+    y = ~median_price,
+    text = ~paste0("+", round(pct_change, 1), "%"),
+    color = ~flat_type,
+    showlegend = FALSE,
+    textposition = "middle right",
+    textfont = list(size = 11),
+    hoverinfo = 'none'
+  )
+
+# 7. Configure the layout.
+#    KEY CHANGE: Remove `height` from the layout section.
+fig <- fig %>% layout(
+    title = list(text = "<b>Enhanced: Median HDB Resale Price by Flat Type (2020–2024)</b>", y = 0.95),
+    xaxis = list(
+      title = "Year",
+      tickmode = "linear",
+      tick0 = 2020,
+      dtick = 1,
+      showgrid = FALSE
+    ),
+    yaxis = list(
+      title = "Median Resale Price (SGD)",
+      tickprefix = "$",
+      tickformat = ",.0f",
+      showgrid = TRUE,
+      gridcolor = "#f0f0f0"
+    ),
+    legend = list(
+      title = list(text = "<b>Flat Type</b>"),
+      orientation = "h",
+      xanchor = "center",
+      x = 0.5,
+      y = -0.2
+    ),
+    margin = list(l = 80, r = 80, t = 60, b = 100) # Height is no longer needed here
+  ) %>%
+  config(displayModeBar = FALSE)
+
+# 8. Render the final, correct, and warning-free plot.
+fig
 ```
