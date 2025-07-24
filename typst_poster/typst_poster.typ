@@ -378,7 +378,7 @@
 #show: doc => poster(
    title: [Percentage Change in Prices], 
   // TODO: use Quarto's normalized metadata.
-   authors: [Lim Jia Rui], 
+   authors: [Jiarui, Weixuan, Elsia, Haris, Shi Wei], 
    departments: [~], 
    size: "36x24", 
 
@@ -447,7 +447,24 @@ We set out to reconstruct and enhance this chart in R, creating a #strong[public
 
 = Original Visualisation
 <original-visualisation>
-#link("images/original.png")[Original Visualisation]
+#figure([
+#box(image("images/original.png"))
+], caption: figure.caption(
+position: bottom, 
+[
+Original Visualization
+]), 
+kind: "quarto-float-fig", 
+supplement: "Figure", 
+)
+
+
+- Flat types: Seven categories from 1‑room up to Multi‑generation \
+- Horizontal bars: Length proportional to percent change; 2‑room (45.4 %) and 3‑room (41 %) highlighted in blue as the highest‑growth segments \
+- Baseline marker: Vertical zero line to distinguish growth from decline (although all segments appreciated) \
+- Annotations: Exact percentages labelled at bar ends for quick value retrieval \
+- Color scheme: Grey for most categories, blue for top two to draw attention \
+- Source & Credits: Chart: STRAITS TIMES GRAPHICS • Source: DATA.GOV.SG, ORANGETEE & TIE RESEARCH & ANALYTICS
 
 = Critical Assessment of the Original Visualization
 <critical-assessment-of-the-original-visualization>
@@ -465,6 +482,23 @@ We set out to reconstruct and enhance this chart in R, creating a #strong[public
 
 + #strong[Static, Print-Focused] \
   No interactive features to reveal exact values, drill into regional breakdowns, or display uncertainty around medians.
+
+== Weaknesses
+<weaknesses>
++ #emph[Lack of Temporal Granularity] \
+  Aggregating from 2020–2024 hides year‑by‑year or quarter‑by‑quarter volatility.
+
++ #emph[No Geographic Context] \
+  Performance may vary by estate or region; this chart treats all transactions as homogeneous.
+
++ #emph[Missing Transaction Volume] \
+  Percentage change alone masks the underlying trade volume, which influences interpretation.
+
++ #emph[Accessibility Concerns] \
+  The blue/grey palette may challenge viewers with color‑vision deficiencies; no alternative encoding is provided.
+
++ #emph[Unexplained Highlight Choice] \
+  Only two categories are colored blue—there is no in‑chart legend explaining why.
 
 #horizontalrule
 
@@ -495,10 +529,29 @@ We set out to reconstruct and enhance this chart in R, creating a #strong[public
 
 = Implementation for the Bar Graph
 <implementation-for-the-bar-graph>
-Below is a streamlined outline of the R workflow. Full code is in the accompanying `.qmd` file.
+=== Data Sources
+<data-sources>
+- #strong[Weekly population counts by planning area] \
+  Obtained from the Singapore Department of Statistics.
+  - Each record includes: week identifier, planning area name, total population, and age-group breakdowns.
+- #strong[Planning-area boundaries (Master Plan 2019)] \
+  Downloaded as a KML from the Urban Redevelopment Authority (URA).
+  - Provides precise polygons for all 55 planning areas.
 
-== 1. Setup and Load Data
-<setup-and-load-data>
-\`\`\`r library(tidyverse) library(scales)
+#horizontalrule
 
-df\_raw \<- read\_csv("data\_output/summary\_by\_type\_year.csv")
+=== Software
+<software>
+- #strong[dplyr] — data manipulation (filtering, grouping, summarizing) \
+- #strong[sf] — import and handle spatial (KML) data as simple features \
+- #strong[leaflet] — render interactive choropleth maps in R \
+- #strong[shiny] — build an interactive web dashboard for exploration
+
+= Improved visualisation
+<improved-visualisation>
+= Further suggestions for interactivity
+<further-suggestions-for-interactivity>
+= References
+<references>
+- #link("https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats")[STRAITS TIMES GRAPHICS. (2025, May 20). Older buyers, smaller households among factors driving demand for smaller flats \[Bar chart\]. The Straits Times.]
+- DataGov.SG. (n.d.). HDB Resale Flat Prices \[Data set\]. https:\/\/data.gov.sg/dataset/hdb-resale-flat-prices

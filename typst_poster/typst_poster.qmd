@@ -4,7 +4,7 @@ format:
   poster-typst: 
     keep-typ: true
     size: "36x24"
-    poster-authors: "Lim Jia Rui"
+    poster-authors: "Jiarui, Weixuan, Elsia, Haris, Shi Wei"
     departments: "&nbsp;"
     institution-logo: "./images/sit.png"
     footer-text: "AAI1001 AY24/25 Tri 2 Team Project"
@@ -24,8 +24,15 @@ We set out to reconstruct and enhance this chart in R, creating a **publication-
 4. Anchors the narrative with a clear mean-change reference line  
 
 # Original Visualisation
-[Original Visualisation](images/original.png)
-yes
+![Original Visualization](images/original.png)
+
+- Flat types: Seven categories from 1‑room up to Multi‑generation  
+- Horizontal bars: Length proportional to percent change; 2‑room (45.4 %) and 3‑room (41 %) highlighted in blue as the highest‑growth segments  
+- Baseline marker: Vertical zero line to distinguish growth from decline (although all segments appreciated)  
+- Annotations: Exact percentages labelled at bar ends for quick value retrieval  
+- Color scheme: Grey for most categories, blue for top two to draw attention  
+- Source & Credits: Chart: STRAITS TIMES GRAPHICS • Source: DATA.GOV.SG, ORANGETEE & TIE RESEARCH & ANALYTICS  
+
 # Critical Assessment of the Original Visualization
 
 1. **Unordered Categories**  
@@ -42,6 +49,23 @@ yes
 
 5. **Static, Print-Focused**  
    No interactive features to reveal exact values, drill into regional breakdowns, or display uncertainty around medians.
+   
+## Weaknesses
+
+1. *Lack of Temporal Granularity*  
+   Aggregating from 2020–2024 hides year‑by‑year or quarter‑by‑quarter volatility.
+
+2. *No Geographic Context*  
+   Performance may vary by estate or region; this chart treats all transactions as homogeneous.
+
+3. *Missing Transaction Volume*  
+   Percentage change alone masks the underlying trade volume, which influences interpretation.
+
+4. *Accessibility Concerns*  
+   The blue/grey palette may challenge viewers with color‑vision deficiencies; no alternative encoding is provided.
+
+5. *Unexplained Highlight Choice*  
+   Only two categories are colored blue—there is no in‑chart legend explaining why.
 
 ---
 
@@ -72,12 +96,31 @@ yes
 
 # Implementation for the Bar Graph
 
-Below is a streamlined outline of the R workflow. Full code is in the accompanying `.qmd` file.
+### Data Sources  
+- **Weekly population counts by planning area**  
+  Obtained from the Singapore Department of Statistics.  
+  - Each record includes: week identifier, planning area name, total population, and age-group breakdowns.  
 
-## 1. Setup and Load Data
+- **Planning-area boundaries (Master Plan 2019)**  
+  Downloaded as a KML from the Urban Redevelopment Authority (URA).  
+  - Provides precise polygons for all 55 planning areas.  
 
-```r
-library(tidyverse)
-library(scales)
+---
 
-df_raw <- read_csv("data_output/summary_by_type_year.csv")
+### Software  
+- **dplyr** — data manipulation (filtering, grouping, summarizing)  
+- **sf** — import and handle spatial (KML) data as simple features  
+- **leaflet** — render interactive choropleth maps in R  
+- **shiny** — build an interactive web dashboard for exploration  
+
+# Improved visualisation
+
+# Further suggestions for interactivity
+
+
+
+
+# References
+
+- [STRAITS TIMES GRAPHICS. (2025, May 20). Older buyers, smaller households among factors driving demand for smaller flats [Bar chart]. The Straits Times.](https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats)
+- DataGov.SG. (n.d.). HDB Resale Flat Prices [Data set]. https://data.gov.sg/dataset/hdb-resale-flat-prices
