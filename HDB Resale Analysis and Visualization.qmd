@@ -145,8 +145,6 @@ ggplot(price_change_summary,
 The original charts are simple bar charts. We can create far more insightful and visually appealing charts
 
 ```{r}
-# --- Enhanced Chart 1 (Final Version): Warning-Free and Correct ---
-
 # 1. Prepare the summary data (no changes).
 summary_by_type_year <- project_data %>%
   group_by(flat_type, year) %>%
@@ -171,7 +169,6 @@ flat_types <- levels(plot_data$flat_type)
 palette <- RColorBrewer::brewer.pal(n = length(flat_types), name = "Set2")
 
 # 5. Build the interactive plot.
-#    KEY CHANGE: Move `height = 550` into the main plot_ly() call.
 fig <- plot_ly(
     data = plot_data,
     x = ~year,
@@ -206,7 +203,6 @@ fig <- fig %>% add_text(
   )
 
 # 7. Configure the layout.
-#    KEY CHANGE: Remove `height` from the layout section.
 fig <- fig %>% layout(
     title = list(text = "<b>Enhanced: Median HDB Resale Price by Flat Type (2020–2024)</b>", y = 0.95),
     xaxis = list(
@@ -235,5 +231,108 @@ fig <- fig %>% layout(
   config(displayModeBar = FALSE)
 
 # 8. Render the final, correct, and warning-free plot.
+fig
+```
+
+```{r}
+# 1. Prepare the summary data.
+summary_by_type_year <- project_data %>%
+  group_by(flat_type, year) %>%
+  summarise(median_price = median(resale_price, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(flat_type = factor(flat_type)) %>%
+  arrange(flat_type, year)
+
+# 2. Compute the overall percent change.
+pct_change_df <- summary_by_type_year %>%
+  filter(year %in% c(2020, 2024)) %>%
+  pivot_wider(names_from = year, values_from = median_price, names_prefix = "yr_") %>%
+  mutate(pct_change = 100 * (yr_2024 / yr_2020 - 1)) %>%
+  select(flat_type, pct_change)
+
+# 3. Join the percentage change back to the data.
+plot_data <- summary_by_type_year %>%
+  left_join(pct_change_df, by = "flat_type")
+
+# 4. Define a color-blind-friendly palette
+# Using Okabe-Ito colors (pilot study for colorblind-safe palette)
+cb_palette <- c(
+  "#E69F00",  # Orange
+  "#56B4E9",  # Sky Blue
+  "#009E73",  # Bluish Green
+  "#F0E442",  # Yellow
+  "#0072B2",  # Blue
+  "#D55E00",  # Vermilion
+  "#CC79A7"   # Reddish Purple
+)
+# Truncate or repeat to match number of flat types
+flat_types <- levels(plot_data$flat_type)
+palette <- cb_palette[seq_along(flat_types)]
+
+# 5. Build the interactive plot
+fig <- plot_ly(
+    data = plot_data,
+    x = ~year,
+    y = ~median_price,
+    color = ~flat_type,
+    colors = palette,
+    legendgroup = ~flat_type,
+    type = 'scatter',
+    mode = 'lines+markers',
+    name = ~flat_type,
+    customdata = ~pct_change,
+    hovertemplate = paste0(
+      "<b>%{fullData.name}</b><br>",
+      "Year %{x}: $%{y:,.0f}<br>",
+      "Total Change (2020–2024): %{customdata:.1f}%",
+      "<extra></extra>"
+    ),
+    height = 550
+)
+
+# 6. Add the percentage labels as a separate text layer.
+fig <- fig %>% add_text(
+    data = filter(plot_data, year == 2024),
+    x = ~year,
+    y = ~median_price,
+    text = ~paste0("+", round(pct_change, 1), "%"),
+    color = ~flat_type,
+    colors = palette,
+    showlegend = FALSE,
+    textposition = "middle right",
+    textfont = list(size = 11),
+    hoverinfo = 'none'
+)
+
+# 7. Configure the layout
+fig <- fig %>% layout(
+    title = list(text = "<b>Enhanced: Median HDB Resale Price by Flat Type (2020–2024)</b>", y = 0.95),
+    xaxis = list(
+      title = "Year",
+      tickmode = "linear",
+      tick0 = 2020,
+      dtick = 1,
+      showgrid = FALSE,
+      range = c(2020, 2024.5)   # extend x-axis to ensure space for percentage labels
+    ),
+    yaxis = list(
+      title = "Median Resale Price (SGD)",
+      tickprefix = "$",
+      tickformat = ",.0f",
+      showgrid = TRUE,
+      gridcolor = "#f0f0f0"
+    ),
+    legend = list(
+      title = list(text = "<b>Flat Type</b>"),
+      orientation = "h",
+      xanchor = "center",
+      x = 0.5,
+      y = -0.2
+    ),
+    margin = list(l = 80, r = 80, t = 60, b = 100)
+) %>%
+  config(displayModeBar = FALSE)
+
+# 8. Render the final, color‑blind‑friendly plot
 fig
 ```
