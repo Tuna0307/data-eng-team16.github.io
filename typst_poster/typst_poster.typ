@@ -436,7 +436,10 @@ supplement: "Figure",
 - Baseline marker: Vertical zero line to distinguish growth from decline (although all segments appreciated) \
 - Annotations: Exact percentages labelled at bar ends for quick value retrieval \
 - Color scheme: Grey for most categories, blue for top two to draw attention \
-- Source & Credits: Chart: STRAITS TIMES GRAPHICS • Source: DATA.GOV.SG, ORANGETEE & TIE RESEARCH & ANALYTICS
+- Source & Credits:
+  - Data.gov.sg for raw data \
+  - Orangetee & Tie Research & Analytics for analysis \
+  - Straits Times for visualization design
 
 = Critical Assessment of the Original Visualization
 <critical-assessment-of-the-original-visualization>
