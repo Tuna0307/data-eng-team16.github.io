@@ -500,6 +500,14 @@ supplement: "Figure",
 
 = Implementation for the Bar Graph
 <implementation-for-the-bar-graph>
+== Data Sources
+<data-sources>
+Weekly counts of HDB resale transactions were obtained from the Singapore Government’s open data portal (data.gov.sg). The dataset includes transaction dates, town, flat type, floor area, and resale price. Validation figures were sourced from a Straits Times news article covering the same topic.
+
+== Software
+<software>
+tidyverse package was used for data manipulation and cleaning. lubridate package was used for handling date-time features. janitor package was used for initial data cleaning. plotly package was used for building the interactive web-based visualization.
+
 = Improved visualisation
 <improved-visualisation>
 #box(image("images/Improved Visualisation.png")) 1. #emph[Temporal Clarity] \
@@ -513,19 +521,8 @@ Plotting x axis with years grants temporal granularity and insights to specific 
 + #emph[Clean Axes & Gridlinese] \
   The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
 
-+ #emph[Accessible Colors] The enhanced plot is a multi‑line chart of #strong[Median HDB Resale Price by Flat Type (2020–2024)];. Each of the seven lines uses a distinct CUD color:
-]
++ #emph[Accessible Colors] The enhanced plot is a multi‑line chart of #strong[Median HDB Resale Price by Flat Type (2020–2024)];. Each of the seven lines uses a distinct CUD color: 1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
 
-- 1‑Room (Sky Blue) \
-- 2‑Room (Vermilion) \
-- 3‑Room (Bluish Green) \
-- 4‑Room (Reddish Purple) \
-- 5‑Room (Orange) \
-- Executive (Yellow) \
-- Multi‑Generation (Blue)
-
-#block[
-#set enum(numbering: "1.", start: 5)
 + #emph[Variety Colors] \
   Added a variety of color palettes to increase readability and improve visual appeal.
 
