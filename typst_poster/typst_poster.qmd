@@ -72,26 +72,23 @@ We set out to reconstruct and enhance this chart in R, creating a **publication-
 
 # Suggested Improvements
 
-1. **Descending Bar Order**  
-   Reorder flat types by `pct_change` so the largest growth tops the chart.
+- **Show Temporal Trends Directly**  
+  Replace the static bar‐chart snapshot with a multi‑line chart of median resale price by flat type, so viewers can see year‑to‑year trajectories.
 
-2. **Single-Accent Highlight**  
-   Render all bars in light grey, with **2-ROOM** in a bold red—drawing immediate attention to the strongest gainer.
+- **Endpoint Labeling**  
+  Annotate each line at the 2024 end‑point with both the absolute median price and the total percent change since 2020, for immediate take‑aways.
 
-3. **Diverging Palette (Optional)**  
-   For a richer narrative, use a blue–grey–red gradient centered at the mean change (~39%) to show who outperformed or underperformed.
+- **Color‑Blind–Friendly Palette**  
+  Use the Okabe–Ito (CUD) palette to ensure all seven flat‑type lines remain distinguishable to viewers with color‑vision deficiencies.
 
-4. **Direct Labels & Consistent Placement**  
-   Place every `% change` label to the right of its bar, with a consistent nudge (e.g. 2 pts) and uniform font & color, avoiding overlap.
+- **Currency Formatting**  
+  Format the y‑axis tick labels as “\$300 K”, “\$400 K”, etc., to reinforce the S\$ scale and reduce cognitive load.
 
-5. **Annotate Average Annual Deals**  
-   Show “Avg deals: XXX” beneath each bar in muted grey, so readers immediately gauge sample robustness.
+- **Interactive Hover Tooltips**  
+  In a dashboard context, enable hover tooltips that display the exact median price and transaction volume for any flat type in any year.
 
-6. **Mean Reference Line**  
-   Add a dashed vertical line at the overall mean % change, with its value stated in the subtitle for clarity.
-
-7. **Academic Typography & Alignment**  
-   Left-justify the title, subtitle, and caption using `plot.title.position = "plot"` and `hjust = 0`, adopt sentence case, and set a clear size hierarchy.
+- **Legend Placement & Sizing**  
+  Move the legend below the chart, expand its marker size and line samples to improve readability in a poster format.
 
 ---
 
@@ -116,20 +113,32 @@ We set out to reconstruct and enhance this chart in R, creating a **publication-
 
 # Improved visualisation
 ![Improved Visualization](images/Improved Visualisation.png)
-1. *Improved Temporal Granularity*  
+1. *Temporal Clarity*  
    Plotting x axis with years grants temporal granularity and insights to specific year.
 
-2. *No Geographic Context*  
-   Performance may vary by estate or region; this chart treats all transactions as homogeneous.
+2. *Endpoint Annotations*  
+   At 2024, each line is labeled with its percent increase (e.g., “+47.8 %” for 3‑Room), eliminating the need for a separate legend lookup.
 
-3. *Missing Transaction Volume*  
-   Percentage change alone masks the underlying trade volume, which influences interpretation.
+3. *Clean Axes & Gridlinese*  
+   The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
 
-4. *Accessibility Concerns Addressed*  
-    Better contrast: Utilize high-contrast colors to improve accessibility for users with visual-impairments, ensuring clarity and ease of interpretation for all users. One such example is the use of Color Universal Design (CUD) colors which are designed to be distinguishable by all users, including those with color vision deficiencies. (Okabe and Ito 2008).
+
+4. *Accessible Colors* 
+    The enhanced plot is a multi‑line chart of **Median HDB Resale Price by Flat Type (2020–2024)**. Each of the seven lines uses a distinct CUD color:
+
+- 1‑Room (Sky Blue)  
+- 2‑Room (Vermilion)  
+- 3‑Room (Bluish Green)  
+- 4‑Room (Reddish Purple)  
+- 5‑Room (Orange)  
+- Executive (Yellow)  
+- Multi‑Generation (Blue)
 
 5. *Variety Colors*  
    Added a variety of color palettes to increase readability and improve visual appeal.
+
+6. *Improved Legend*
+   Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
 
 
 # Further suggestions for interactivity

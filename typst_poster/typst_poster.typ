@@ -476,8 +476,8 @@ supplement: "Figure",
 + #emph[Accessibility Concerns] \
   The blue/grey palette may challenge viewers with color‑vision deficiencies; no alternative encoding is provided.
 
-+ #emph[Unexplained Highlight Choice] \
-  Only two categories are colored blue—there is no in‑chart legend explaining why.
++ #emph[Bland Colors] \
+  Only two color palettes being grey and blue which makes the graph look extremely bland.
 
 #horizontalrule
 
@@ -528,8 +528,28 @@ supplement: "Figure",
 
 = Improved visualisation
 <improved-visualisation>
+#box(image("images/Improved Visualisation.png")) 1. #emph[Improved Temporal Granularity] \
+Plotting x axis with years grants temporal granularity and insights to specific year.
+
+#block[
+#set enum(numbering: "1.", start: 2)
++ #emph[No Geographic Context] \
+  Performance may vary by estate or region; this chart treats all transactions as homogeneous. -we dont answer this (chloroplerth map)
+
++ #emph[Missing Transaction Volume] \
+  Percentage change alone masks the underlying trade volume, which influences interpretation. -We dont answer this
+
++ #emph[Accessibility Concerns Addressed] \
+  Better contrast: Utilize high-contrast colors to improve accessibility for users with visual-impairments, ensuring clarity and ease of interpretation for all users. One such example is the use of Color Universal Design (CUD) colors which are designed to be distinguishable by all users, including those with color vision deficiencies. (Okabe and Ito 2008).
+
++ #emph[Variety Colors] \
+  Added a variety of color palettes to increase readability and improve visual appeal.
+]
+
 = Further suggestions for interactivity
 <further-suggestions-for-interactivity>
+= Conclusion
+<conclusion>
 = References
 <references>
 - #link("https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats")[STRAITS TIMES GRAPHICS. (2025, May 20). Older buyers, smaller households among factors driving demand for smaller flats \[Bar chart\]. The Straits Times.]
