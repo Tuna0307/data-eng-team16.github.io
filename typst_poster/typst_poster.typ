@@ -431,12 +431,12 @@ supplement: "Figure",
 )
 
 
-- Flat types: Seven categories from 1‑room up to Multi‑generation \
-- Horizontal bars: Length proportional to percent change; 2‑room (45.4 %) and 3‑room (41 %) highlighted in blue as the highest‑growth segments \
-- Baseline marker: Vertical zero line to distinguish growth from decline (although all segments appreciated) \
-- Annotations: Exact percentages labelled at bar ends for quick value retrieval \
-- Color scheme: Grey for most categories, blue for top two to draw attention \
-- Source & Credits:
+- #strong[Flat types:] Seven categories from 1‑room up to Multi‑generation \
+- #strong[Horizontal bars:] Length proportional to percent change; 2‑room (45.4 %) and 3‑room (41 %) highlighted in blue as the highest‑growth segments \
+- #strong[Baseline marker:] Vertical zero line to distinguish growth from decline (although all segments appreciated) \
+- #strong[Annotations:] Exact percentages labelled at bar ends for quick value retrieval \
+- #strong[Color scheme:] Grey for most categories, blue for top two to draw attention \
+- #strong[Source & Credits:]
   - Data.gov.sg for raw data \
   - Orangetee & Tie Research & Analytics for analysis \
   - Straits Times for visualization design
