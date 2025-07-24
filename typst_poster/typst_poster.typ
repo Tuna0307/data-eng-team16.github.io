@@ -463,7 +463,8 @@ supplement: "Figure",
 + #strong[Legend Dependency for Value Lookup] \
   While exact percentages are labelled on the bars, the use of blue vs.~grey to "highlight" the top two segments has no accompanying legend or call‑out explaining #emph[why] those two are special.
 
-+ #strong[Cluttered Axes and Distracting Gridlines] The vertical gridlines are fairly prominent and, together with the zero‐line baseline, compete visually with the bars themselves.
++ #strong[Cluttered Axes and Distracting Gridlines] \
+  The vertical gridlines are fairly prominent and, together with the zero‐line baseline, compete visually with the bars themselves.
 
 + #strong[Accessibility Concerns] \
   The grey vs.~blue contrast may be hard to distinguish for viewers with deuteranopia/protanopia. (No alternative texture or pattern is provided.)
@@ -487,12 +488,14 @@ supplement: "Figure",
 + #strong[Clean Axes & Gridlinese] \
   The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
 
-+ #strong[Accessible Colors] The enhanced plot is a multi‑line chart of #strong[Median HDB Resale Price by Flat Type (2020–2024)];. Each of the seven lines uses a distinct CUD color: 1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
++ #strong[Accessible Colors] \
+  The enhanced plot is a multi‑line chart of #strong[Median HDB Resale Price by Flat Type (2020–2024)];. Each of the seven lines uses a distinct CUD color: 1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
 
 + #strong[Variety Colors] \
   Added a variety of color palettes to increase readability and improve visual appeal.
 
-+ #strong[Improved Legend] Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
++ #strong[Improved Legend] \
+  Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
 
 #horizontalrule
 
@@ -528,3 +531,4 @@ The enhanced multi‑line chart reveals that while Multi‑generation flats comm
 <references>
 - #link("https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats")[STRAITS TIMES GRAPHICS. (2025, May 20). Older buyers, smaller households among factors driving demand for smaller flats \[Bar chart\]. The Straits Times.]
 - DataGov.SG. (n.d.). HDB Resale Flat Prices \[Data set\]. https:\/\/data.gov.sg/dataset/hdb-resale-flat-prices
+- Okabe, M., & Ito, K. (2008). Color Universal Design (CUD): How to make figures and presenta- tions that are friendly to Colorblind people. https:\/\/jfly.uni-koeln.de/color/

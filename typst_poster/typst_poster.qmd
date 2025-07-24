@@ -53,7 +53,7 @@ The Singapore public-housing market has undergone pronounced shifts from 2020 to
 2. **Legend Dependency for Value Lookup**  
   While exact percentages are labelled on the bars, the use of blue vs. grey to “highlight” the top two segments has no accompanying legend or call‑out explaining _why_ those two are special.
    
-3. **Cluttered Axes and Distracting Gridlines** 
+3. **Cluttered Axes and Distracting Gridlines**  
   The vertical gridlines are fairly prominent and, together with the zero‐line baseline, compete visually with the bars themselves.
    
 4. **Accessibility Concerns**  
@@ -79,14 +79,14 @@ The Singapore public-housing market has undergone pronounced shifts from 2020 to
 3. **Clean Axes & Gridlinese**  
    The y‑axis uses compact currency labels; gridlines are subtly drawn to guide the eye without clutter.
 
-4. **Accessible Colors** 
+4. **Accessible Colors**  
 The enhanced plot is a multi‑line chart of **Median HDB Resale Price by Flat Type (2020–2024)**. Each of the seven lines uses a distinct CUD color:
 1‑Room (Sky Blue), 2‑Room (Vermilion), 3‑Room (Bluish Green), 4‑Room (Reddish Purple), 5‑Room (Orange), Executive (Yellow), Multi‑Generation (Blue)
 
 5. **Variety Colors**  
    Added a variety of color palettes to increase readability and improve visual appeal.
 
-6. **Improved Legend**
+6. **Improved Legend**  
   Positioned below, with enlarged line swatches and flat‑type names, making it easy to match colors to categories at a glance.
 
 
@@ -114,3 +114,6 @@ The enhanced multi‑line chart reveals that while Multi‑generation flats comm
 
 - [STRAITS TIMES GRAPHICS. (2025, May 20). Older buyers, smaller households among factors driving demand for smaller flats [Bar chart]. The Straits Times.](https://www.straitstimes.com/singapore/older-buyers-smaller-households-among-factors-driving-demand-for-smaller-flats)
 - DataGov.SG. (n.d.). HDB Resale Flat Prices [Data set]. https://data.gov.sg/dataset/hdb-resale-flat-prices
+- Okabe, M., & Ito, K. (2008). Color Universal Design (CUD): How to make figures and presenta-
+tions that are friendly to Colorblind people. https://jfly.uni-koeln.de/color/
+
